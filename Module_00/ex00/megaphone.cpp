@@ -1,10 +1,25 @@
 #include <iostream>
 
-int main()
+int main(int ac, char **av)
 {
-	std::cout << "hello";
+	int i = 1;
+	int j = 0;
+
+	if(ac == 1)
+		std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *";
+	while(i < ac)
+	{
+		j = 0;
+		while (av[i][j])
+		{
+			if(av[i][j] >= 'a' && av[i][j] <= 'z')
+				std::cout << (char) std::toupper(av[i][j]);	
+			else
+				std::cout << av[i][j];
+			j++;
+		}
+		std::cout << " ";
+		i++;
+	}
+	std::cout << "\n";	
 }
-
-
-// push to github 
-// solve first exercice

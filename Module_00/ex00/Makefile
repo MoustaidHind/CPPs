@@ -17,8 +17,7 @@ clean :
 fclean : clean
 	rm -f $(NAME)
 
-re : 
-	clean fclean
+re : fclean all
 
 .PHONY : re clean fclean all
 .SECONDARY : $(OBJ)

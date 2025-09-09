@@ -1,0 +1,143 @@
+#ifndef PHONEBOOK_HPP
+#define PHONEBOOK_HPP
+
+#include <iostream>
+#include <string>
+#include <cstdlib>  // for atoi
+#include <iomanip> // for setw
+
+class Contact{
+
+	private:
+		std::string first_name;
+		std::string last_name;
+		std::string nickname;
+		std::string phone_number;
+		std::string darkest_secret;
+
+	public:
+		Contact() //default constructore 
+		{}
+
+		void reset_contact()
+		{
+			first_name = "";
+			last_name = "";
+			nickname = "";
+			phone_number = "";
+			darkest_secret = "";
+		}
+
+		void add_field(std::string &field, std::string text)
+		{
+			while(field.empty())
+			{
+				std::cout << text << " : " ;
+				std::getline(std::cin, field);
+			}
+		}
+		void setFirstName() { add_field(first_name, "first name"); }
+		std::string getFirstName() {return(first_name);}
+
+		void setLastName() { add_field(last_name, "last name"); }
+		std::string getLastName() {return(last_name);}
+
+		void setNickname() { add_field(nickname, "nickname"); }
+		std::string getNickname() {return(nickname);}
+
+		void setPhoneNumber() { add_field(phone_number, "phone number"); }
+		std::string getPhoneNumber() {return(phone_number);}
+
+		void setDarkestSecret() { add_field(darkest_secret, "darkest secret");}
+		std::string getDarkestSecret() {return(darkest_secret);}
+};
+
+
+class PhoneBook {
+
+	private:
+		Contact contacts[8];
+
+		void display(int &count)
+		{
+			int j = 0;
+			int rows;
+
+			if(count >= 8)
+				rows = 8;
+			else
+				rows = count;
+			std::cout << "+---------+----------+----------+----------+" << std::endl ;
+			std::cout << std::setw(10) << std::right << "index" << "|" 
+				<< std::setw(10) <<"first name" << "|"
+				<< std::setw(10) <<"last name" << "|" 
+				<< std::setw(10) << "nickname" << std::endl;
+			std::cout << "+---------+----------+----------+----------+" << std::endl ;
+			while (j < rows)
+			{
+				std::cout << std::setw(10) << j + 1 ;
+
+				if(contacts[j].getFirstName().size() <= 10)
+					std::cout << "|" << std::setw(10) << contacts[j].getFirstName();
+				else
+					std::cout << "|" << contacts[j].getFirstName().substr(0, 9) << ".";
+
+				if(contacts[j].getLastName().size() <= 10)
+					std::cout << "|" << std::setw(10) << contacts[j].getLastName();
+				else
+					std::cout << "|" << contacts[j].getLastName().substr(0, 9) << ".";
+
+				if(contacts[j].getNickname().size() <= 10)
+					std::cout << "|" << std::setw(10) << contacts[j].getNickname();
+				else
+					std::cout << "|" << contacts[j].getNickname().substr(0, 9) << ".";
+
+				std::cout << std::endl << "+---------+----------+----------+----------+" << std::endl ;
+				j++;
+			}
+		}
+
+	public:
+		PhoneBook()
+		{}
+		void add(int &count)
+		{
+			if(count >= 8)
+				contacts[count % 8].reset_contact();
+			contacts[count % 8].setFirstName();
+			contacts[count % 8].setLastName();
+			contacts[count % 8].setNickname();
+			contacts[count % 8].setPhoneNumber();
+			contacts[count % 8].setDarkestSecret();
+			count++; // handle full phonebook
+		}
+
+		void search(int &count)
+		{
+			std::string input;
+			const char* info[5] = {"first name", "last name", "nickname", "phone number", "darkest secret"};
+			int index = 0;
+
+			display(count);
+			if(count == 0)
+				return;
+			std::cout << std::endl;
+			while (index < 1 || index > std::min(count, 8)) // min() in case count greater then 8  
+			{
+				std::cout << "Enter the correct index : ";
+			 	std::getline(std::cin, input);
+				index = atoi(input.c_str());
+			}
+			std::cout << "\n### All The Information ###" << std::endl;
+
+			std::cout << std::setw(17) << std::left << info[0] << " : "<< contacts[index - 1].getFirstName() << std::endl;
+			std::cout << std::setw(17) << std::left << info[1] << " : "<< contacts[index - 1].getLastName() << std::endl;
+			std::cout << std::setw(17) << std::left << info[2] << " : "<< contacts[index - 1].getNickname() << std::endl;
+			std::cout << std::setw(17) << std::left << info[3] << " : "<< contacts[index - 1].getPhoneNumber() << std::endl;
+			std::cout << std::setw(17) << std::left << info[4] << " : "<< contacts[index - 1].getDarkestSecret() << std::endl;
+			std::cout << std::endl;
+		}
+};
+
+
+#endif

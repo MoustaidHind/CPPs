@@ -7,7 +7,7 @@ SRC = megaphone.cpp
 OBJ = $(SRC:.cpp=.o)
 
 $(NAME) : $(OBJ)
-	$(CC) $(OBJ) -o $(NAME) 
+	$(CC) $(OBJ) -o $(NAME)
 
 all : $(NAME)
 

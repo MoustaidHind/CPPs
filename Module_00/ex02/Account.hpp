@@ -23,25 +23,24 @@ public:
 
 	typedef Account		t;
 
-//static functions 
-	static int	getNbAccounts( void ); 
+	static int	getNbAccounts( void );
 	static int	getTotalAmount( void );
 	static int	getNbDeposits( void );
 	static int	getNbWithdrawals( void );
-	static void	displayAccountsInfos( void ); // (in test) 1,4
+	static void	displayAccountsInfos( void );
 
-	Account( int initial_deposit ); // (in test)
-	~Account( void ); // (in test)
+	Account( int initial_deposit );
+	~Account( void );
 
-	void	makeDeposit( int deposit ); // (in test) 3
-	bool	makeWithdrawal( int withdrawal ); // (in test)6
-	int		checkAmount( void ) const; 
-	void	displayStatus( void ) const; // (in test) 2,5
- 
+	void	makeDeposit( int deposit );
+	bool	makeWithdrawal( int withdrawal );
+	int		checkAmount( void ) const;
+	void	displayStatus( void ) const;
+
 
 private:
-//static global
-	static int	_nbAccounts; 
+
+	static int	_nbAccounts;
 	static int	_totalAmount;
 	static int	_totalNbDeposits;
 	static int	_totalNbWithdrawals;

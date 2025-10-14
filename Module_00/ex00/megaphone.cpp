@@ -13,7 +13,7 @@ int main(int ac, char **av)
 		while (av[i][j])
 		{
 			if(av[i][j] >= 'a' && av[i][j] <= 'z')
-				std::cout << (char) std::toupper(av[i][j]);	
+				std::cout << static_cast<char>(std::toupper(static_cast<int>(av[i][j])));
 			else
 				std::cout << av[i][j];
 			j++;

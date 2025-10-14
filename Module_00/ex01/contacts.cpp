@@ -22,7 +22,6 @@ void Contact::add_field(std::string &field, std::string text)
 	}
 }
 
-
 void Contact::setFirstName(){ 
 	add_field(first_name, "first name");
 }

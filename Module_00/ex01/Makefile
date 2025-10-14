@@ -6,8 +6,8 @@ SRC = main.cpp contacts.cpp phonebook.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
-# %.o: %.cpp %.hpp
-# 	$(CXX) $(CXXFLAGS) -c $< -o $@
+%.o: %.cpp %.hpp
+	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 $(NAME) : $(OBJ) 
 	$(CC) $(SRC) -o $(NAME)

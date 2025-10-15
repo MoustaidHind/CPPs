@@ -11,22 +11,22 @@ void PhoneBook::add(int &count)
 		contacts[count % 8].setNickname();
 		contacts[count % 8].setPhoneNumber();
 		contacts[count % 8].setDarkestSecret();
-		count++; // handle full phonebook
+		count++;
 	}
 }
 
 
 void PhoneBook::search(int &count)
 {
-	std::string input;
+	std::string	input;
+	int 		index = 0;
 	const char* info[5] = {"first name", "last name", "nickname", "phone number", "darkest secret"};
-	int index = 0;
 
 	display(count);
 	if(count == 0)
 		return;
 	std::cout << std::endl;
-	while (index < 1 || index > std::min(count, 8)) // min() in case count greater then 8  
+	while (index < 1 || index > std::min(count, 8)) 
 	{
 		std::cout << "Enter the correct index : ";
 		if(!std::getline(std::cin, input))
@@ -51,7 +51,7 @@ void PhoneBook::line()
 		std::cout << std::setfill('-') << std::setw(11) << "+";
 	}
 	std::cout << std::endl;
-	std::cout << std::setfill(' '); //to reset with space
+	std::cout << std::setfill(' ');
 }
 
 

@@ -16,7 +16,7 @@ class Contact{
 		std::string darkest_secret;
 
 	public:
-		Contact() {}; //default constructore 
+		Contact() {};
 
 		void reset_contact();
 

@@ -1,6 +1,6 @@
 CC = c++ -Wall -Werror -Wextra -std=c++98 
 
-NAME = account
+NAME = zombie
 
 SRC := $(wildcard *.cpp)
 

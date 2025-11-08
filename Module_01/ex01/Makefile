@@ -1,4 +1,4 @@
-CC = c++ -Wall -Werror -Wextra -std=c++98 
+CC = c++ -Wall -Werror -Wextra -std=c++98
 
 NAME = zombie
 

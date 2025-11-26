@@ -1,6 +1,0 @@
-outfile << line.substr(prev_position, position);
-outfile << line.substr(prev_WW, WW);
-outfile << argv[3];
-outfile << argv[3];
-prev_position = position + strlen(argv[2]) ;
-prev_WW = WW + strlen(argv[2]) ;

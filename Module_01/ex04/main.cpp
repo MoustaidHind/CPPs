@@ -16,7 +16,12 @@ int main(int argc, char *argv[])
 		std::cerr << "Usage: ./replace <filename> <s1> <s2>\n";
 		return -1;
 	}
-
+	
+	if (argv[2][0] == '\0') { //std::string::find("") always returns 0 will never return npos, always stay in first (You found nothing, at the start (empty) )
+		std::cerr << "Error: <s1> cannot be empty.\n";
+		return -1;
+	}
+	
 	infile.open(argv[1]);
 	if(!infile.is_open())
 	{
@@ -34,41 +39,18 @@ int main(int argc, char *argv[])
 
 	while (std::getline(infile, line))
 	{
-		outfile << line << std::endl;
 		prev_position = 0;
-		position = line.find(argv[2]); //41
+		position = line.find(argv[2]);
 		while (position != std::string::npos)
 		{
 			outfile << line.substr(prev_position, (position - prev_position));
-			std::cout << "substring from (" << prev_position + 1  << ") ->" ;
-			std::cout << "(" << (position - prev_position) +1<< ") CHAR\n";
-			
-			outfile << argv[3];
-			std::cout << "write argv[3] : " << argv[3] << "\n";
-			
-			prev_position = position + strlen(argv[2]) ; // 41 + 8 = 49
-			std::cout << "update prev_pos = " << prev_position + 1 << "\n";
-			
-			position = line.find(argv[2], prev_position); // 51
-			std::cout << "update position = " << position + 1 << "\n"; 
-
+			outfile << argv[3];			
+			prev_position = position + strlen(argv[2]); // skip the string we searching for	
+			position = line.find(argv[2], prev_position);
 		}
-		outfile << line.substr(prev_position) << std::endl; // we dont do from prev->position , cuz find will return npos(max size_t)
-		std::cout << "remaining : " << line.substr(prev_position) << std::endl; // we dont do from prev->position , cuz find will return npos(max size_t)
-
-		std::cout << "----------------------------------\n";
+		outfile << line.substr(prev_position) << std::endl;
 	}
-
 }
-
-
-/* 
-outfile << line.substr(prev_POSS
-
-
-
-*/
-
 
 /* 
 1. File Handling with C++ Streams

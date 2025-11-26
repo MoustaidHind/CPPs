@@ -1,0 +1,3 @@
+outfile << line.substr(prev_position, position);
+outfile << argv[3];
+prev_position = position + strlen(argv[2]) ;

@@ -5,14 +5,14 @@
 // pointers to member functions 
 // -> means pointer to the methodes in a specific class 
 
-int main()
+int main(int ac, char *av[])
 {
 	Harl h;
-	h.complain("DEBUG");
-    h.complain("INFO");
-    h.complain("WARNING");
-    h.complain("ERROR");
+	if(ac != 2)
+	{
+		std::cerr << "Usage: ./harlFilter <level>" << std::endl;
+		return (1);
+	}
 
-    // unknown level
-    h.complain("RANDOM");
+	h.complain(std::string(av[1]));
 }

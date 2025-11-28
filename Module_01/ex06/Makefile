@@ -1,6 +1,6 @@
 CC = c++ -Wall -Werror -Wextra -std=c++98
 
-NAME = Harl
+NAME = harlFilter
 
 SRC := $(wildcard *.cpp)
 

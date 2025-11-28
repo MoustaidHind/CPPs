@@ -52,6 +52,8 @@ int main(int argc, char *argv[])
 	}
 }
 
+// must add .cpp && .hpp (split the things)
+
 /* 
 1. File Handling with C++ Streams
 2. Reading and Writing File Content
@@ -68,5 +70,3 @@ int main(int argc, char *argv[])
 -> why i should use npos, and why the computer cant hold a string with max size_t ?
 
 */
-
-// probleem hooww to find the next substring

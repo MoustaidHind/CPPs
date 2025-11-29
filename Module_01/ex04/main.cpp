@@ -1,15 +1,10 @@
-#include <iostream>
-#include <fstream> 
-#include <string.h> 
+#include "replace.hpp"
 
 int main(int argc, char *argv[])
 {
 	std::ofstream outfile; //writing (program sending data)
 	std::ifstream infile; //reding  (program recieving data)
-	std::string line;
 	std::string new_name;
-	size_t		position;
-	size_t		prev_position;
 
 	if(argc != 4)
 	{
@@ -17,11 +12,12 @@ int main(int argc, char *argv[])
 		return -1;
 	}
 	
-	if (argv[2][0] == '\0') { //std::string::find("") always returns 0 will never return npos, always stay in first (You found nothing, at the start (empty) )
+	if (argv[2][0] == '\0') 
+	{ //std::string::find("") always returns 0 will never return npos, always stay in first (You found nothing, at the start (empty) )
 		std::cerr << "Error: <s1> cannot be empty.\n";
 		return -1;
 	}
-	
+
 	infile.open(argv[1]);
 	if(!infile.is_open())
 	{
@@ -29,7 +25,7 @@ int main(int argc, char *argv[])
 		return -1;
 	}
 
-	new_name = argv[1] + std::string(".replace");
+	new_name = std::string(argv[1]) + ".replace";
 	outfile.open(new_name.c_str()); //convert to const char *
 	if(!outfile.is_open())
 	{
@@ -37,22 +33,9 @@ int main(int argc, char *argv[])
 		return -1;
 	}
 
-	while (std::getline(infile, line))
-	{
-		prev_position = 0;
-		position = line.find(argv[2]);
-		while (position != std::string::npos)
-		{
-			outfile << line.substr(prev_position, (position - prev_position));
-			outfile << argv[3];			
-			prev_position = position + strlen(argv[2]); // skip the string we searching for	
-			position = line.find(argv[2], prev_position);
-		}
-		outfile << line.substr(prev_position) << std::endl;
-	}
+	ft_replace(&outfile, &infile, argv[2], argv[3]);
 }
 
-// must add .cpp && .hpp (split the things)
 
 /* 
 1. File Handling with C++ Streams

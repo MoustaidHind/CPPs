@@ -3,8 +3,6 @@
 
 #include <iostream>
  
-
-
 class Harl
 {
 private:
@@ -18,7 +16,5 @@ public:
 	~Harl(){};
 	void	complain( std::string level );
 };
-
-
 
 #endif

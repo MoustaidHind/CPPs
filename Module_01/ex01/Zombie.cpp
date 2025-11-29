@@ -12,7 +12,7 @@ void Zombie::announce(void)
 
 void Zombie::setname(std::string new_name)
 {
-	this->name = new_name; // why this with (->) not (.)
+	this->name = new_name;
 }
 
 Zombie::~Zombie()

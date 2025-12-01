@@ -6,7 +6,6 @@ void ft_replace(std::ofstream *outfile, std::ifstream *infile, const char *s1, c
 	size_t		position;
 	size_t		prev_position;
 
-
 	while (std::getline(*infile, line))
 	{
 		prev_position = 0;
@@ -15,7 +14,7 @@ void ft_replace(std::ofstream *outfile, std::ifstream *infile, const char *s1, c
 		{
 			*outfile << line.substr(prev_position, (position - prev_position));
 			*outfile << s2;			
-			prev_position = position + strlen(s1); // skip the string we searching for	
+			prev_position = position + strlen(s1);	
 			position = line.find(s1, prev_position);
 		}
 		*outfile << line.substr(prev_position) << std::endl;

@@ -14,7 +14,7 @@ public:
 	HumanB(std::string n_name): name(n_name), w_type(NULL) {};
 
 	void setWeapon(Weapon& w);
-	void attack(); //<name> attacks with their <weapon type>
+	void attack();
 };
 
 #endif

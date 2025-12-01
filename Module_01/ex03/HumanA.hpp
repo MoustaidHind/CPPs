@@ -12,7 +12,7 @@ private:
 public:
 	HumanA(std::string n_name, Weapon& n_type) : name(n_name), w_type(n_type){};
 	~HumanA(){};
-	void attack(); //<name> attacks with their <weapon type>
+	void attack();
 };
 
 #endif

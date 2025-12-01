@@ -3,7 +3,10 @@
 
 void HumanB::attack()
 {
-	std::cout << name << "  attacks with their " << (*w_type).getType() << std::endl;
+	if(!w_type)
+		std::cout << name << " has no weapon !" << std::endl;
+	else
+		std::cout << name << " attacks with their " << (*w_type).getType() << std::endl;
 }
 
 void HumanB::setWeapon(Weapon& n_type)

@@ -2,23 +2,12 @@
 
 int main() 
 {
-
-	Zombie* heapZombie = new Zombie("HeapZombie");
+	Zombie* heapZombie = newZombie("HeapZombie");
+	if (!heapZombie)
+		return 1;	
     heapZombie->announce();
-    delete heapZombie; // must be deleted manually (heap allocation)
+    delete heapZombie;
 
-    randomChump("StackZombie"); // auto destroyed when function ends
+    randomChump("StackZombie");
 }
 
-
-/* 
-
-int *a = malloc(sizeof(int)); free(a):
-int *a = new int; delete(a);
-	delete just like reset the value inside it , but the a still exist 
-
-*/
-
-/* 
-is should exist (2 constructore default, paramtrized)
-*/

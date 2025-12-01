@@ -41,17 +41,13 @@ void Harl::complain(std::string level)
 	{
 		case (0):
 			(this->*ptr[0])();
-			/* fall through */
 		case (1):
 			(this->*ptr[1])();
-			/* fall through */
 		case (2):
 			(this->*ptr[2])();
-			/* fall through */
 		case (3):
 			(this->*ptr[3])();
 			break;
-		
 		default:
 			std::cout << "[ Probably complaining about insignificant problems ]" << std::endl;
 	}

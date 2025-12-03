@@ -1,18 +1,22 @@
-CC = c++ -Wall -Werror -Wextra -std=c++98
+CC = c++ 
+
+CCFLAGS = -Wall -Werror -Wextra -std=c++98 
 
 NAME = Harl
 
 SRC := $(wildcard *.cpp)
 
+HEADERS := $(wildcard *.hpp)
+
 OBJ = $(SRC:.cpp=.o)
 
-%.o: %.cpp %.hpp
-	$(CXX) $(CXXFLAGS) -c $< -o $@
+all : $(NAME)
 
 $(NAME) : $(OBJ) 
-	$(CC) $(SRC) -o $(NAME)
+	$(CC) $(CCFLAGS) $(SRC) -o $(NAME)
 
-all : $(NAME)
+%.o: %.cpp $(HEADERS)
+	$(CC) $(CCFLAGS) -c $< -o $@
 
 clean : 
 	rm -f $(OBJ)

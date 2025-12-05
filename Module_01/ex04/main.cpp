@@ -33,5 +33,8 @@ int main(int argc, char *argv[])
 	}
 	
 	ft_replace(&outfile, &infile, argv[2], argv[3]);
+
+	outfile.close();
+	infile.close();
 }
 

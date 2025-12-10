@@ -10,7 +10,8 @@ Fixed::Fixed() : _value(0) // default constructor
 Fixed::Fixed(const Fixed& other) //: _value(other.getRawBits()) // copy constructor
 {
 	std::cout << "Copy constructor called" << std::endl;
-	_value = other.getRawBits();
+	// _value = other.getRawBits();
+	*this = other;
 }
 
 Fixed& Fixed::operator= (const Fixed& other)  // copy assignment operator overload

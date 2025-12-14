@@ -5,17 +5,17 @@ const int	Fixed::_fractional_bits = 8;
 /* CONSTRUCTORS */
 Fixed::Fixed() : _value(0) // default constructor
 {
-	std::cout << "Default constructor called" << std::endl;
+	// std::cout << "Default constructor called" << std::endl;
 }
 Fixed::Fixed(const Fixed& other) // copy constructor
 {
-	std::cout << "Copy constructor called" << std::endl;
+	// std::cout << "Copy constructor called" << std::endl;
 	// _value = other.getRawBits();
 	*this = other; // ->  [[ WHY THAT WORK, WHEN THE OPERATOR= NEEDS TWO EXISTING OBJECTS ]]
 }
 Fixed& Fixed::operator= (const Fixed& other)  // copy assignment operator overload
 {
-	std::cout << "Copy assignment operator called" << std::endl;
+	// std::cout << "Copy assignment operator called" << std::endl;
 	if(this == &other)
 		return (*this);	
 	_value = other.getRawBits();
@@ -23,17 +23,17 @@ Fixed& Fixed::operator= (const Fixed& other)  // copy assignment operator overlo
 }
 Fixed::~Fixed() // destructor
 {
-	std::cout << "Destructor called" << std::endl;
+	// std::cout << "Destructor called" << std::endl;
 }
 Fixed::Fixed(const int val)// parametrized constructor takes a constant integer as a parameter
 {
-	std::cout << "Int constructor called" << std::endl;
-	setRawBits(val * (1 << 8));
+	// std::cout << "Int constructor called" << std::endl;
+	setRawBits(val * (1 << _fractional_bits));
 }
 
 Fixed::Fixed(const float val)// parametrized constructor takes a constant floating-point number
 {
-	std::cout << "float constructor called" << std::endl;
+	// std::cout << "float constructor called" << std::endl;
 	setRawBits(roundf(val * (1 << _fractional_bits)));
 }
 
@@ -59,12 +59,12 @@ void Fixed::setRawBits( int const raw ) // that sets the raw value of the fixed-
 // CONVERTION 
 int Fixed::toInt( void ) const // that converts the fixed-point value to an integer value
 {
-	return(_value / (1 << 8));
+	return(_value / (1 << _fractional_bits));
 }
 
 float Fixed::toFloat( void ) const  // that converts the fixed-point value to an floating-point value
 {
-	return((float)_value / (float)(1 << 8));
+	return((float)_value / (float)(1 << _fractional_bits));
 }
 
 
@@ -125,36 +125,40 @@ bool Fixed::operator!=(const Fixed& other) const
 
 
 // The 4 arithmetic operators: +, -, *, and /
-Fixed Fixed::operator+ (const Fixed& other)
+Fixed Fixed::operator+ (const Fixed& other) const
 {
 	Fixed sum;
 
-	sum.setRawBits(this->_value + other._value);
+	sum.setRawBits(this->getRawBits() + other.getRawBits());
 	return(sum);
 }
 
-Fixed Fixed::operator- (const Fixed& other)
+Fixed Fixed::operator- (const Fixed& other) const
 {
 	Fixed sub;
 
-	sub.setRawBits(this->_value - other._value);
+	sub.setRawBits(this->getRawBits() - other.getRawBits());
 	return(sub);
 }
 
-Fixed Fixed::operator* (const Fixed& other)
+Fixed Fixed::operator* (const Fixed& other) const
 {
 	Fixed multi;
 
-	multi.setRawBits(this->_value * other._value);
+	multi.setRawBits(((long long)this->_value * other._value) / (1 << _fractional_bits));
+	// cast to long long , to prevent overflowing of int
+	// a*2⁸ * b*2⁸ = a * b * 2¹⁶ →→ divide in 2⁸ →→ a * b * 2⁸ [this is the right raw value, then divide in 2⁸ to get real value]
 	return(multi);
+
 }
 
-Fixed Fixed::operator/ (const Fixed& other)
+Fixed Fixed::operator/ (const Fixed& other) const
 {
-	Fixed sum;
+	Fixed devi;
 
-	sum.setRawBits(this->_value / other._value);
-	return(sum);
+	devi.setRawBits(((long long)this->_value << _fractional_bits) / other._value);
+	// a*2⁸ / b*2⁸ = a * b * 2⁰(1) →→ multi one value with 2⁸ →→ a * b * 2⁸ [this is the right raw value, then divide in 2⁸ to get real value]
+	return(devi);
 }
 
 
@@ -189,7 +193,7 @@ Fixed Fixed::operator--(int)
 	// Returns the current value (a copy), then increments afterwards
 	Fixed post_decr(*this); // call copy constructor
 
-	this->_value++;
+	this->_value--;
 	return(post_decr);
 }
 
@@ -207,9 +211,24 @@ Fixed& Fixed::min(Fixed& f1, Fixed& f2)
 	return(f1);
 }
 
-// Fixed& Fixed::min(const Fixed& f1, const Fixed& f2) const
-// {
-// 	if(f1._value > f2._value)
-// 		return(f2);
-// 	return(f1);
-// }
+const Fixed& Fixed::min(const Fixed& f1, const Fixed& f2)
+{
+	if(f1._value > f2._value)
+		return(f2);
+	return(f1);
+}
+
+
+Fixed& Fixed::max(Fixed& f1, Fixed& f2)
+{
+	if(f1._value > f2._value)
+		return(f1);
+	return(f2);
+}
+
+const Fixed& Fixed::max(const Fixed& f1, const Fixed& f2)
+{
+	if(f1._value > f2._value)
+		return(f1);
+	return(f2);
+}

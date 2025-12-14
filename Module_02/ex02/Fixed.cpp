@@ -232,3 +232,11 @@ const Fixed& Fixed::max(const Fixed& f1, const Fixed& f2)
 		return(f1);
 	return(f2);
 }
+
+/* 
+why you do const,
+what affect if you dont fix * or + or ...
+where i should shift with 8, and where i should multi by 2⁸
+what about negative numbers, 
+test divide by 0 (the subject deos not require it)
+*/

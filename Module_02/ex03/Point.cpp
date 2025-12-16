@@ -5,7 +5,6 @@
 Point::Point(): x(0), y(0)  // default constructor
 {}
 
-
 Point::Point(const float a, const float b): x(a), y(b) // parametrized constructor
 {}
 
@@ -18,6 +17,16 @@ Point& Point::operator= (const Point& other)
 		return(*this);
 	// we cannot do copy operator cuz the x and y are constant.	
 	return(*this);
+}
+
+const Fixed Point::get_x() const
+{
+	return(x);
+}
+
+const Fixed Point::get_y() const
+{
+	return(y);
 }
 
 Point::~Point() {}

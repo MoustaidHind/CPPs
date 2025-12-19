@@ -2,19 +2,19 @@
 
 const int	Fixed::_fractional_bits = 8;
 
-Fixed::Fixed() : _value(0) // default constructor
+Fixed::Fixed() : _value(0)
 {
 	std::cout << "Default constructor called" << std::endl;
 }
 
-Fixed::Fixed(const Fixed& other) // copy constructor
+Fixed::Fixed(const Fixed& other)
 {
 	std::cout << "Copy constructor called" << std::endl;
 	// _value = other.getRawBits();
-	*this = other; // ->  [[ WHY THAT WORK, WHEN THE OPERATOR= NEEDS TWO EXISTING OBJECTS ]]
+	*this = other;
 }
 
-Fixed& Fixed::operator= (const Fixed& other)  // copy assignment operator overload
+Fixed& Fixed::operator= (const Fixed& other)
 {
 	std::cout << "Copy assignment operator called" << std::endl;
 	if(this == &other)
@@ -25,51 +25,45 @@ Fixed& Fixed::operator= (const Fixed& other)  // copy assignment operator overlo
 	return(*this);
 }
 
-Fixed::~Fixed() // destructor
+Fixed::~Fixed()
 {
 	std::cout << "Destructor called" << std::endl;
 }
 
-/*
---> const in the end 
-This member function is not allowed to modify the object.
-It cannot change any attribute of the class.
-It is a read-only function.
-*/
-int Fixed::getRawBits( void ) const // returns the raw value of the fixed-point value
+int Fixed::getRawBits( void ) const
 {
 	return(_value);
 }
 
-void Fixed::setRawBits( int const raw ) // that sets the raw value of the fixed-point number
+void Fixed::setRawBits( int const raw )
 {
 	_value = raw;
 }
 
-Fixed::Fixed(const int val)// parametrized constructor takes a constant integer as a parameter
+Fixed::Fixed(const int val)
 {
 	std::cout << "Int constructor called" << std::endl;
-	setRawBits(val * (1 << 8));
+	setRawBits(val * (1 << _fractional_bits));
 }
 
-Fixed::Fixed(const float val)// parametrized constructor takes a constant floating-point number
+Fixed::Fixed(const float val)
 {
 	std::cout << "float constructor called" << std::endl;
 	setRawBits(roundf(val * (1 << _fractional_bits)));
 }
 
-int Fixed::toInt( void ) const // that converts the fixed-point value to an integer value
+float Fixed::toFloat( void ) const
 {
-	return(_value / (1 << 8));
+	return((float)_value / (float)(1 << _fractional_bits));
 }
 
-float Fixed::toFloat( void ) const  // that converts the fixed-point value to an floating-point value
+int Fixed::toInt( void ) const
 {
-	return((float)_value / (float)(1 << 8));
+	return(_value / (1 << _fractional_bits));
 }
 
 std::ostream& operator<<(std::ostream &os, const Fixed& other)
 {
 	os << other.toFloat();
 	return(os);
-};
+}

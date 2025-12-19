@@ -2,14 +2,14 @@
 
 int main( void )
 {
-	Fixed		a;//de
-	Fixed const b( 10 );//int const
-	Fixed const c( 42.42f );//float const
-	Fixed const d( b );// copy + operator
+	Fixed		a;
+	Fixed const b( 10 );
+	Fixed const c( 42.42f );
+	Fixed const d( b );
 
-	a = Fixed( 1234.4321f ); //float + oparator + destroy tmp object
+	a = Fixed( 1234.4321f );
 
-	std::cout << "a is " << a << std::endl; // float 1234.4321f -> 1234.4321f * 2⁸ -> 1234.4321f / 2⁸ 
+	std::cout << "a is " << a << std::endl;
 	std::cout << "b is " << b << std::endl;
 	std::cout << "c is " << c << std::endl;
 	std::cout << "d is " << d << std::endl;

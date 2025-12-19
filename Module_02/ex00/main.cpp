@@ -2,15 +2,15 @@
 
 int main( void ) 
 {
-	Fixed a; //def
-	Fixed b( a ); //copy -> get
-	Fixed c; // def
+	Fixed a;
+	Fixed b( a );
+	Fixed c;
 
-	c = b; // copy assi -> get
+	c = b;
 
-	std::cout << a.getRawBits() << std::endl; // get
-	std::cout << b.getRawBits() << std::endl; // get
-	std::cout << c.getRawBits() << std::endl; // get
+	std::cout << a.getRawBits() << std::endl;
+	std::cout << b.getRawBits() << std::endl;
+	std::cout << c.getRawBits() << std::endl;
 
 	return 0;
 }

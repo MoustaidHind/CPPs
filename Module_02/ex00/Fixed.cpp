@@ -2,19 +2,19 @@
 
 const int	Fixed::_fractional_bits = 8;
 
-Fixed::Fixed() : _value(0) // default constructor
+Fixed::Fixed() : _value(0)
 {
 	std::cout << "Default constructor called" << std::endl;
 }
 
-Fixed::Fixed(const Fixed& other) //: _value(other.getRawBits()) // copy constructor
+Fixed::Fixed(const Fixed& other)
 {
 	std::cout << "Copy constructor called" << std::endl;
 	// _value = other.getRawBits();
 	*this = other;
 }
 
-Fixed& Fixed::operator= (const Fixed& other)  // copy assignment operator overload
+Fixed& Fixed::operator= (const Fixed& other)
 {
 	std::cout << "Copy assignment operator called" << std::endl;
 	if(this == &other)
@@ -25,24 +25,18 @@ Fixed& Fixed::operator= (const Fixed& other)  // copy assignment operator overlo
 	return(*this);
 }
 
-Fixed::~Fixed() // destructor
+Fixed::~Fixed()
 {
 	std::cout << "Destructor called" << std::endl;
 }
 
-/*
---> const in the end 
-This member function is not allowed to modify the object.
-It cannot change any attribute of the class.
-It is a read-only function.
-*/
-int Fixed::getRawBits( void ) const // returns the raw value of the fixed-point value
+int Fixed::getRawBits( void ) const
 {
 	std::cout << "getRawBits member function called" << std::endl;
 	return(_value);
 }
 
-void Fixed::setRawBits( int const raw ) // that sets the raw value of the fixed-point number
+void Fixed::setRawBits( int const raw )
 {
 	_value = raw;
 }

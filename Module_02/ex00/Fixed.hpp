@@ -8,17 +8,17 @@
 class Fixed
 {
 private:
-	static const int	_fractional_bits; // store the number of fractional bits. Its value will always be the integer literal 8.
-	int					_value; // An integer to store the fixed-point number value.
-
+	int					_value;
+	static const int	_fractional_bits;
+	
 public:
-	Fixed(); // default constructor
-	Fixed(const Fixed& other); // copy constructor
-	Fixed& operator = (const Fixed& other); // copy assignment operator overload
-	~Fixed(); // destructor
+	Fixed();
+	Fixed(const Fixed& other);
+	Fixed& operator = (const Fixed& other);
+	~Fixed();
 
-	int getRawBits( void ) const; // returns the raw value of the fixed-point value
-	void setRawBits( int const raw ); // that sets the raw value of the fixed-point number
+	int getRawBits( void ) const;
+	void setRawBits( int const raw );
 };
 
 #endif

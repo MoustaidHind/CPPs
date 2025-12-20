@@ -8,7 +8,6 @@ class Point
 	private:
 		const Fixed x;
 		const Fixed y;
-		// i can add more ++++
 
 	public:
 		Point();
@@ -19,8 +18,6 @@ class Point
 
 		const Fixed get_x() const;
 		const Fixed get_y() const;
-		// i can add more ++++
-
 };
 
 #endif

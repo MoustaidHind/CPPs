@@ -10,8 +10,6 @@ Fixed calc_orientation(Point const &a, Point const &b, Point const &p)
 	return(res);
 }
 
-
-
 bool bsp( Point const a, Point const b, Point const c, Point const point)
 {
 	Fixed si_1 = calc_orientation(a, b, point);
@@ -24,6 +22,3 @@ bool bsp( Point const a, Point const b, Point const c, Point const point)
 
 	return(false);
 }
-
-// still have confuse how the vector Z can check if the point is in or out the triangle 
-// to watch -> https://www.youtube.com/results?search_query=Determinant+Formula

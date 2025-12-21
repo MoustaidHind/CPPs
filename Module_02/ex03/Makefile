@@ -1,6 +1,6 @@
-CC = c++ 
+CC = c++
 
-CCFLAGS = -Wall -Werror -Wextra -std=c++98 
+CCFLAGS = -Wall -Werror -Wextra -std=c++98
 
 NAME = point
 
@@ -13,7 +13,7 @@ OBJ = $(SRC:.cpp=.o)
 all : $(NAME)
 
 $(NAME) : $(OBJ) 
-	$(CC) $(CCFLAGS) $(SRC) -o $(NAME)
+	$(CC) $(CCFLAGS) $(OBJ) -o $(NAME)
 
 %.o: %.cpp $(HEADERS)
 	$(CC) $(CCFLAGS) -c $< -o $@

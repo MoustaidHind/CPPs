@@ -1,6 +1,6 @@
 #include "Point.hpp"
 
-/*check if the P point is right or left the vectore*/
+/* [Determinant] */
 Fixed calc_orientation(Point const &a, Point const &b, Point const &p)
 {
 	Fixed res;

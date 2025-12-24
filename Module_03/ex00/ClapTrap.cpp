@@ -1,6 +1,7 @@
 #include "ClapTrap.hpp"
 
-//default constructor
+// default constructor
+// is name initialized by default with empty string ??
 ClapTrap::ClapTrap() : Hit_points(10), Energy_points(10), Attack_points(0)
 {
 	std::cout << "ClapTrap constructor called" << std::endl;
@@ -12,6 +13,7 @@ ClapTrap::ClapTrap(std::string name) : Name(name), Hit_points(10), Energy_points
 	std::cout << "ClapTrap parametrized constructor called " << std::endl;
 }
 
+//copy constructor
 ClapTrap::ClapTrap(const ClapTrap& other)
 {
 	std::cout << "ClapTrap Copy constructor called " << std::endl;
@@ -46,7 +48,7 @@ void ClapTrap::attack(const std::string& target)
 {
 	if(Hit_points <= 0 || Energy_points <= 0)
 	{
-		std::cout << Name << " You Are Dead :( " << std::endl;
+		std::cout << Name << " is Dead :( " << std::endl;
 		return;
 	}
 	Energy_points--;
@@ -60,7 +62,7 @@ void ClapTrap::takeDamage(unsigned int amount)
 {
 	if(Hit_points <= 0) // just check hit points , not check for energy cuz we dont use it 
 	{
-		std::cout << Name << " You Are Dead :( " << std::endl;
+		std::cout << Name << " is Dead :( " << std::endl;
 		return;
 	}
 	if(Hit_points <= amount) // prevent underflow
@@ -77,7 +79,7 @@ void ClapTrap::beRepaired(unsigned int amount)
 {
 	if(Hit_points <= 0 || Energy_points <= 0)
 	{
-		std::cout << Name << " You Are Dead :( " << std::endl;
+		std::cout << Name << " is Dead :( " << std::endl;
 		return;
 	}
 	Hit_points += amount;

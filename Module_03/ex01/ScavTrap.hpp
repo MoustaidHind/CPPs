@@ -3,28 +3,21 @@
 
 #include "ClapTrap.hpp"
 
-class ScavTrap
+
+class ScavTrap : public ClapTrap
 {
 private:
-	/* data */
+	
 public:
-	ScavTrap(/* args */);
+	ScavTrap();
+	ScavTrap(const ScavTrap& src);
+	ScavTrap& operator=(const ScavTrap& src);
+	ScavTrap(std::string name);
 	~ScavTrap();
+	
+	void attack(const std::string& target);
+	void guardGate();
 };
-
-/* 
-concepts
-
-1. Inheritance Syntax (public keyword)
-2. Access Specifiers: private vs protected
-3. Constructor Chaining (The Initialization List)
-
-
-
-*/
-
-
-
 
 
 #endif

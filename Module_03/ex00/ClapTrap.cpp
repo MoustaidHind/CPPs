@@ -44,27 +44,28 @@ ClapTrap::~ClapTrap()
 	std::cout << "ClapTrap destructor called" << std::endl;
 }
 
+
+
 void ClapTrap::attack(const std::string& target)
 {
 	if(Hit_points <= 0 || Energy_points <= 0)
 	{
-		std::cout << "[" << Name << "] is Dead :( " << std::endl;
+		std::cout << "[" << Name << "] is Dead 💀💀 " << std::endl;
 		return;
 	}
 	Energy_points--;
 
-	std::cout << "[" << Name << "] attacks [" << target << "] , causing [" << Attack_points << "] points of damage! " << std::endl;
+	std::cout << "ClapTrap [" << Name << "] attacks 💥💥 [" << target << "] , causing [" << Attack_points << "] points of damage 🩸🩸 ! " << std::endl;
 	std::cout << Name << "'s Hit point [" << Hit_points << "]" << std::endl;
 	std::cout << Name << "'s Energy point [" << Energy_points << "]" << std::endl;
 	std::cout << Name << "'s Attack point [" << Attack_points << "]\n" << std::endl;
-
 }
 
 void ClapTrap::takeDamage(unsigned int amount)
 {
 	if(Hit_points <= 0)
 	{
-		std::cout << "[" << Name << "] is Dead :( " << std::endl;
+		std::cout << "[" << Name << "] is Dead 💀💀 " << std::endl;
 		return;
 	}
 	if(Hit_points <= amount)
@@ -72,7 +73,7 @@ void ClapTrap::takeDamage(unsigned int amount)
 	else
 		Hit_points -= amount;
 	
-	std::cout << "[" << Name << "] takes [" << amount << "] damage " <<  std::endl;
+	std::cout << "[" << Name << "] takes [" << amount << "] damage ⚠️⚠️ " <<  std::endl;
 	std::cout << Name << "'s Hit point [" << Hit_points << "]" << std::endl;
 	std::cout << Name << "'s Energy point [" << Energy_points << "]" << std::endl;
 	std::cout << Name << "'s Attack point [" << Attack_points << "]\n" << std::endl;
@@ -83,13 +84,13 @@ void ClapTrap::beRepaired(unsigned int amount)
 {
 	if(Hit_points <= 0 || Energy_points <= 0)
 	{
-		std::cout << "[" << Name << "] is Dead :( " << std::endl;
+		std::cout << "[" << Name << "] is Dead 💀💀 " << std::endl;
 		return;
 	}
 	Hit_points += amount;
 	Energy_points--;
 
-	std::cout << "[" << Name << "] Repaired itself, getting back [" << amount << "] hit points " << std::endl;
+	std::cout << "[" << Name << "] Repaired itself 🛠️🛠️ , getting back [" << amount << "] hit points ⚔️ ! " << std::endl;
 	std::cout << Name << "'s Hit point [" << Hit_points << "]" << std::endl;
 	std::cout << Name << "'s Energy point [" << Energy_points << "]" << std::endl;
 	std::cout << Name << "'s Attack point [" << Attack_points << "]\n" << std::endl;

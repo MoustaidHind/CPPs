@@ -3,7 +3,7 @@
 // default constructor
 DiamondTrap::DiamondTrap()
 {
-	this->Name = "default_DT";
+	this->Name = "defaultDiamond";
 	this->Hit_points = FragTrap::Hit_points;
 	this->Energy_points = ScavTrap::Energy_points;
 	this->Attack_points  = FragTrap::Attack_points;
@@ -31,7 +31,7 @@ DiamondTrap::DiamondTrap(const DiamondTrap& src) : ClapTrap(src), ScavTrap(src),
 	std::cout << "DiamondTrap Copy constructor called " << std::endl;
 }
 
-
+// copy assignment
 DiamondTrap& DiamondTrap::operator=(const DiamondTrap& src)
 {
 	if(this == &src)

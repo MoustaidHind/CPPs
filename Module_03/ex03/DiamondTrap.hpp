@@ -13,13 +13,13 @@ private:
 
 public:
 	DiamondTrap();
-	DiamondTrap(std::string name); 
+	DiamondTrap(std::string name);
 	DiamondTrap(const DiamondTrap& src);
 	DiamondTrap& operator=(const DiamondTrap& src);
 	~DiamondTrap();
 
-
-	void whoAmI(); // name and its ClapTrap name
+	void attack(const std::string& target);
+	void whoAmI();
 
 };
 

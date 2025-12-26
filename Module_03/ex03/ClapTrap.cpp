@@ -48,21 +48,22 @@ void ClapTrap::attack(const std::string& target)
 {
 	if(Hit_points <= 0 || Energy_points <= 0)
 	{
-		std::cout << Name << " is Dead :( " << std::endl;
+		std::cout << "[" << Name << "] is Dead :( " << std::endl;
 		return;
 	}
 	Energy_points--;
-
-	std::cout << "ClapTrap " << Name << " attacks " << target << " , causing " << Attack_points << " points of damage! " << std::endl;
+	std::cout << "------ ATTACK ------" << std::endl;
+	std::cout << "ClapTrap [" << Name << "] attacks [" << target << "] , causing [" << Attack_points << "] points of damage! " << std::endl;
 	std::cout << Name << "'s Hit point [" << Hit_points << "]" << std::endl;
-	std::cout << Name << "'s Energy point [" << Energy_points << "]\n" << std::endl;
+	std::cout << Name << "'s Energy point [" << Energy_points << "]" << std::endl;
+	std::cout << Name << "'s Attack point [" << Attack_points << "]\n" << std::endl;
 }
 
 void ClapTrap::takeDamage(unsigned int amount)
 {
 	if(Hit_points <= 0) // just check hit points , not check for energy cuz we dont use it 
 	{
-		std::cout << Name << " is Dead :( " << std::endl;
+		std::cout << "[" << Name << "] is Dead :( " << std::endl;
 		return;
 	}
 	if(Hit_points <= amount) // prevent underflow
@@ -70,22 +71,28 @@ void ClapTrap::takeDamage(unsigned int amount)
 	else
 		Hit_points -= amount;
 	
-	std::cout << Name << " takes " << amount << " damage " <<  std::endl;
+	std::cout << "------ TAKE DAMAGE ------" << std::endl;
+	std::cout << "[" << Name << "] takes [" << amount << "] damage " <<  std::endl;
 	std::cout << Name << "'s Hit point [" << Hit_points << "]" << std::endl;
-	std::cout << Name << "'s Energy point [" << Energy_points << "]\n" << std::endl;
+	std::cout << Name << "'s Energy point [" << Energy_points << "]" << std::endl;
+	std::cout << Name << "'s Attack point [" << Attack_points << "]\n" << std::endl;
+
 }
 
 void ClapTrap::beRepaired(unsigned int amount)
 {
 	if(Hit_points <= 0 || Energy_points <= 0)
 	{
-		std::cout << Name << " is Dead :( " << std::endl;
+		std::cout << "[" << Name << "] is Dead :( " << std::endl;
 		return;
 	}
 	Hit_points += amount;
 	Energy_points--;
 
-	std::cout << Name << " Repaired itself, getting back " << amount << " hit points " << std::endl;
+	std::cout << "------ REPAIRED ------" << std::endl;
+	std::cout << "[" << Name << "] Repaired itself, getting back [" << amount << "] hit points " << std::endl;
 	std::cout << Name << "'s Hit point [" << Hit_points << "]" << std::endl;
-	std::cout << Name << "'s Energy point [" << Energy_points << "]\n" << std::endl;
+	std::cout << Name << "'s Energy point [" << Energy_points << "]" << std::endl;
+	std::cout << Name << "'s Attack point [" << Attack_points << "]\n" << std::endl;
+
 }

@@ -4,17 +4,17 @@
 ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
 {
 	std::cout << "ScavTrap parametrized constructor called" << std::endl;
-	Hit_points = 100;
-	Energy_points = 50;
-	Attack_points = 20;
+	this->Hit_points = 100;
+	this->Energy_points = 50;
+	this->Attack_points = 20;
 }
 
 ScavTrap::ScavTrap()
 {
 	std::cout << "ScavTrap constructor called" << std::endl;
-	Hit_points = 100;
-	Energy_points = 50;
-	Attack_points = 20;
+	this->Hit_points = 100;
+	this->Energy_points = 50;
+	this->Attack_points = 20;
 }
 
 //copy constructor
@@ -42,16 +42,19 @@ ScavTrap::~ScavTrap()
 
 void ScavTrap::attack(const std::string& target)
 {
-	if(Hit_points <= 0 || Energy_points <= 0)
+	if(this->Hit_points <= 0 || this->Energy_points <= 0)
 	{
-		std::cout << Name << " is Dead :( " << std::endl;
+		std::cout << this->Name << " is Dead :( " << std::endl;
 		return;
 	}
-	Energy_points--;
+	this->Energy_points--;
 
-	std::cout << "ScavTrap " << Name << " attacks " << target << " , causing " << Attack_points << " points of damage! " << std::endl;
-	std::cout << Name << "'s Hit point [" << Hit_points << "]" << std::endl;
-	std::cout << Name << "'s Energy point [" << Energy_points << "]\n" << std::endl;
+	std::cout << "------ ATTACK ------" << std::endl;
+	std::cout << "ScavTrap [" << this->Name << "] attacks [" << target << "] , causing [" << this->Attack_points << "] points of damage! " << std::endl;
+	std::cout << this->Name << "'s Hit point [" << this->Hit_points << "]" << std::endl;
+	std::cout << this->Name << "'s Energy point [" << this->Energy_points << "]" << std::endl;
+	std::cout << this->Name << "'s Attack point [" << this->Attack_points << "]\n" << std::endl;
+
 }
 
 void ScavTrap::guardGate()

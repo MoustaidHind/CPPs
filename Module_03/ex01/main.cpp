@@ -4,6 +4,7 @@
 
 int main()
 {
+    {
 	    ScavTrap scav("Serena");
 
         scav.takeDamage(50); 
@@ -12,6 +13,14 @@ int main()
         scav.attack("Target B");
 
         scav.guardGate();
+
+    }
+    {
+        //virtual destructor use case
+        std::cout << "---------------------\n";
+        ClapTrap *ptr = new ScavTrap("h1");
+        delete ptr;
+    }
         
     return (0);
 }

@@ -13,7 +13,7 @@ OBJ = $(SRC:.cpp=.o)
 all : $(NAME)
 
 $(NAME) : $(OBJ) 
-	$(CC) $(CCFLAGS) $(SRC) -o $(NAME)
+	$(CC) $(CCFLAGS) $(OBJ) -o $(NAME)
 
 %.o: %.cpp $(HEADERS)
 	$(CC) $(CCFLAGS) -c $< -o $@

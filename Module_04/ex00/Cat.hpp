@@ -7,11 +7,16 @@
 
 class Cat : public Animal
 {
-private:
-	/* data */
 public:
-	Cat(/* args */);
+	Cat();
+	Cat(const Cat& src);
+	Cat& operator=(const Cat& src);
 	~Cat();
+
+	std::string getType() const;
+	void 		setType(const std::string newType);
+	void makeSound() const;
+
 };
 
 

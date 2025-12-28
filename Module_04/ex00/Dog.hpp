@@ -5,14 +5,17 @@
 
 class Dog : public Animal
 {
-private:
-	/* data */
+
 public:
-	Dog(/* args */);
+	Dog();
+	Dog(const Dog& src);
+	Dog& operator=(const Dog& src);
 	~Dog();
+
+	std::string getType() const;
+	void 		setType(const std::string newType);
+	void makeSound() const;
+
 };
-
-
-
 
 #endif

@@ -2,6 +2,7 @@
 #include "Cat.hpp"
 #include "Dog.hpp"
 #include "WrongCat.hpp"
+#include "WrongAnimal.hpp"
 
 
 int main()
@@ -26,7 +27,8 @@ int main()
 	std::cout << i->getType() << " " << std::endl;
 	i->makeSound(); //will output the cat sound!
 
-	// delete WrongAnimal;
+	delete i;
 }
+
 return 0;
 }

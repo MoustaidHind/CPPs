@@ -2,18 +2,20 @@
 
 Cat::Cat() : Animal("Cat")
 {
-	catBrain = new Brain;
 	std::cout << "Cat Constructor called" << std::endl;
+	catBrain = new Brain;
 }
 
 Cat::~Cat()
 {
-	delete catBrain;
 	std::cout << "Cat destructor called" << std::endl;
+	delete catBrain;
 }
 
 Cat::Cat(const Cat& src) : Animal(src)
 {
+	catBrain = new Brain();
+	*catBrain = *src.catBrain;
 	*this = src;
 }
 
@@ -23,6 +25,10 @@ Cat& Cat::operator=(const Cat& src)
 		return(*this);
 
 	Animal::operator=(src);
+
+	delete catBrain;
+	catBrain = new Brain();
+	*catBrain = *src.catBrain;
 
 	return(*this);
 }

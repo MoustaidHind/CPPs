@@ -2,18 +2,20 @@
 
 Dog::Dog() : Animal("Dog")
 {
-	dogBrain = new Brain;
 	std::cout << "Dog Constructor called" << std::endl;
+	dogBrain = new Brain;
 }
 
 Dog::~Dog()
 {
-	delete dogBrain ;
 	std::cout << "Dog destructor called" << std::endl;
+	delete dogBrain;
 }
 
 Dog::Dog(const Dog& src) : Animal(src)
 {
+	dogBrain = new Brain();
+	*dogBrain = *src.dogBrain; // copy the content
 	*this = src;
 }
 
@@ -23,6 +25,10 @@ Dog& Dog::operator=(const Dog& src)
 		return(*this);
 
 	Animal::operator=(src);
+	
+	delete dogBrain; // delete the old data
+	dogBrain = new Brain();
+	*dogBrain = *src.dogBrain;
 
 	return(*this);
 }

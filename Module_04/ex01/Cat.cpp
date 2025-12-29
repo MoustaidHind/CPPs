@@ -2,11 +2,13 @@
 
 Cat::Cat() : Animal("Cat")
 {
+	catBrain = new Brain;
 	std::cout << "Cat Constructor called" << std::endl;
 }
 
 Cat::~Cat()
 {
+	delete catBrain;
 	std::cout << "Cat destructor called" << std::endl;
 }
 

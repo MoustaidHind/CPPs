@@ -6,29 +6,18 @@
 
 
 int main()
-{
-{	const Animal* meta = new Animal();
-	const Animal* j = new Dog();
-	const Animal* i = new Cat();
-	std::cout << j->getType() << " " << std::endl;
-	j->makeSound();
-	std::cout << i->getType() << " " << std::endl;
-	i->makeSound(); //will output the cat sound!
-	meta->makeSound();
+{	
+	Animal* arrAnimals = new Animal[10];
 
-	delete i;
-	delete j;
-	delete meta;
-	// ...
-}
-{
-	std::cout << "\n Test wrong case \n" << std::endl;
-	const WrongAnimal* i = new WrongCat();
-	std::cout << i->getType() << " " << std::endl;
-	i->makeSound(); //will output the cat sound!
+	for(int i = 0; i < 5; i++)
+		arrAnimals[i] = Dog();
 
-	delete i;
-}
+	for(int i = 0; i < 5; i++)
+		arrAnimals[i] = Cat();
 
-return 0;
+	std::cout << "------------- animal sounds ----------------" << std::endl;
+	for(int i = 0; i < 10; i++)
+		arrAnimals[i].makeSound();
+
+	return 0;
 }

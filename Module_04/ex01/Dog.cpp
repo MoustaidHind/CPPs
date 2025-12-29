@@ -2,11 +2,13 @@
 
 Dog::Dog() : Animal("Dog")
 {
+	dogBrain = new Brain;
 	std::cout << "Dog Constructor called" << std::endl;
 }
 
 Dog::~Dog()
 {
+	delete dogBrain ;
 	std::cout << "Dog destructor called" << std::endl;
 }
 

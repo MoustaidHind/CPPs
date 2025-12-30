@@ -5,6 +5,9 @@
 #include "ICharacter.hpp"
 
 
+// Role-Playing Game (RPG)
+
+
 int main()
 {
 	IMateriaSource* src = new MateriaSource();

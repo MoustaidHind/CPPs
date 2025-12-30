@@ -15,6 +15,7 @@ public:
 	AMateria(std::string const & type); // parameterized
 	AMateria(const AMateria& src); // copy
 	AMateria& operator = (const AMateria& src); // copy assignment
+	~AMateria();
 	
 	std::string const & getType() const; //Returns the materia type
 	virtual AMateria* clone() const = 0; 

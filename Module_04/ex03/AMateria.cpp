@@ -28,6 +28,11 @@ AMateria& AMateria::operator = (const AMateria& src)
 	return (*this);
 }
 
+AMateria::~AMateria()
+{
+	std::cout << "destructor " << std::endl;
+}
+
 
 std::string const & AMateria::getType() const
 {

@@ -1,14 +1,20 @@
 #ifndef ICE_HPP
 #define ICE_HPP
 
+#include "AMateria.hpp"
 
-class Ice
+class Ice : public AMateria
 {
-private:
-	/* data */
+
 public:
-	Ice(/* args */);
+	Ice();
+	Ice(const Ice& src); // copy
+	Ice& operator = (const Ice& src); // copy assignment
 	~Ice();
+
+	Ice* clone() const;
+	void  use(ICharacter& target); 
+
 };
 
 

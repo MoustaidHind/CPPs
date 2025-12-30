@@ -3,40 +3,33 @@
 #include "Dog.hpp"
 #include "WrongCat.hpp"
 #include "WrongAnimal.hpp"
+#include "AAnimal.hpp"
 
 
 int main()
 {	
 	{
-		// Animal* arrAnimals[10];
-		Animal** arrAnimals = new Animal*[4];
+		// AAnimal* ptr = new AAnimal; // ERROR MESSSAGE
+	}
 
+	{
+		Animal *arrAAnimals[4];
 
 		for(int i = 0; i < 4; i++)
 		{
 			if(i < 2)
-				arrAnimals[i] = new Dog();
+				arrAAnimals[i] = new Dog();
 			else 
-				arrAnimals[i] = new Cat();
+				arrAAnimals[i] = new Cat();
 			std::cout << "------------------------------------------------" << std::endl;
 		}
 
-
-		std::cout << "--------------- animal sounds ------------------" << std::endl;
+		std::cout << "--------------- Aanimal sounds ------------------" << std::endl;
 		for(int i = 0; i < 4; i++)
-			arrAnimals[i]->makeSound();
+			arrAAnimals[i]->makeSound();
 
 		std::cout << "--------------- destructors --------------------" << std::endl;
-
-		for(int i = 0; i < 4; i++)
-		{
-			delete arrAnimals[i]; // delete each object 
-			std::cout << "------------------------------------------------" << std::endl;
-		}
-
-		delete  [] arrAnimals; // delete the array itsefl 
 	}
-
 
 	{
 		std::cout << "------------------------------------------------" << std::endl;

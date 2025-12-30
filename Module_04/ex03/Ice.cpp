@@ -1,6 +1,6 @@
 #include "Ice.hpp"
 
-Ice::Ice() : AMateria("Ice")
+Ice::Ice() : AMateria("ice")
 {
 	std::cout << "default Ice" << std::endl;
 }
@@ -39,7 +39,7 @@ Ice* Ice::clone() const
 void  Ice::use(ICharacter& target)
 {
 
-	std::cout << "* shoots an ice bolt at <name> *" << std::endl;
-	
+	std::cout << "* shoots an ice bolt at" << target.getName() << " *" << std::endl;
+
 	// name of the Character passed as a parameter
 }

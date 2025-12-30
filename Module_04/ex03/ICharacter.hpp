@@ -18,3 +18,6 @@ class ICharacter
 };
 
 #endif
+
+
+// is interface does not have constructors ?

@@ -20,11 +20,6 @@ AMateria& AMateria::operator = (const AMateria& src)
 {
 	std::cout << " copy assignment " << std::endl;
 
-	if(this == &src)
-		return(*this);
-
-	this->type = src.getType();
-
 	return (*this);
 }
 

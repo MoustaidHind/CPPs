@@ -2,7 +2,7 @@ CC = c++
 
 CCFLAGS = -Wall -Werror -Wextra -std=c++98 
 
-NAME = aamateria
+NAME = materias
 
 SRC := $(wildcard *.cpp)
 

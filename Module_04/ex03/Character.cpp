@@ -89,13 +89,7 @@ void Character::unequip(int idx)
 
 void Character::use(int idx, ICharacter& target)
 {
-	for(int i = 0; i < 4; i++)
-	{
-		if(i == idx && this->inventory[idx] != NULL)
-		{
-			this->inventory[idx]->use(target);
-			break;
-		}
-	}
+	if(idx >= 0 && idx < 4 && this->inventory[idx] != NULL)
+		this->inventory[idx]->use(target);
 }
 

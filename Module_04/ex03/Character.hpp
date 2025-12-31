@@ -1,5 +1,4 @@
-#ifndef CHARECTER_HPP
-#define CHARECTER_HPP
+#pragma once 
 
 
 #include "AMateria.hpp"
@@ -25,4 +24,3 @@ public:
 	void use(int idx, ICharacter& target);
 };
 
-#endif

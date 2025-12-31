@@ -19,7 +19,8 @@ AMateria::AMateria(const AMateria& src)
 AMateria& AMateria::operator = (const AMateria& src)
 {
 	std::cout << " copy assignment " << std::endl;
-
+	if(this == &src)
+		return (*this);
 	return (*this);
 }
 
@@ -34,9 +35,4 @@ std::string const & AMateria::getType() const
 	return(this->type);
 }
 
-
-void AMateria::use(ICharacter& target)
-{
-	//  do something;
-}
 

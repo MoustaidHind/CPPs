@@ -1,13 +1,10 @@
-#ifndef ICHARACTER_HPP
-#define ICHARACTER_HPP
-
-
+#pragma once
 
 #include <iostream>
-#include "AMateria.hpp"
 
+class AMateria; // FORWARD DECLARATION
 
-class ICharacter
+class ICharacter 
 {
 	public:
 	virtual ~ICharacter() {}
@@ -19,5 +16,5 @@ class ICharacter
 
 // why i should use interface even it does do nothing, just define functions 
 // if we call interface how it work 
+// why interface have destructor and it does not constructed 
 
-#endif

@@ -1,6 +1,4 @@
-#ifndef CAT_HPP
-#define CAT_HPP
-
+#pragma once 
 
 #include "Animal.hpp"
 #include "Brain.hpp"
@@ -24,4 +22,3 @@ public:
 };
 
 
-#endif

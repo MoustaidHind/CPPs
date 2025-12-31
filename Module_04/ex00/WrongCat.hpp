@@ -1,6 +1,4 @@
-#ifndef WRONGCAT_HPP
-#define WRONGCAT_HPP
-
+#pragma once 
 
 #include "WrongAnimal.hpp"
 
@@ -19,5 +17,3 @@ public:
 
 };
 
-
-#endif

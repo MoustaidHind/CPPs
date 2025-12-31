@@ -1,6 +1,4 @@
-#ifndef WRONGANIMAL_HPP
-#define WRONGANIMAL_HPP
-
+#pragma once 
 
 #include <iostream>
 
@@ -20,6 +18,3 @@ public:
 	void makeSound() const;
 };
 
-
-
-#endif

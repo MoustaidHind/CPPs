@@ -1,5 +1,4 @@
-#ifndef BRAIN_HPP
-#define BRAIN_HPP
+#pragma once 
 
 #include <iostream>
 
@@ -15,5 +14,3 @@ public:
 	~Brain();
 };
 
-
-#endif

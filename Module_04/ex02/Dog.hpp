@@ -1,6 +1,4 @@
-#ifndef DOG_HPP
-#define DOG_HPP
-
+#pragma once 
 
 #include "Animal.hpp"
 #include "Brain.hpp"
@@ -23,4 +21,3 @@ public:
 
 };
 
-#endif

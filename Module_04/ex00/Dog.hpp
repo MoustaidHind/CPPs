@@ -1,5 +1,4 @@
-#ifndef DOG_HPP
-#define DOG_HPP
+#pragma once 
 
 #include "Animal.hpp"
 
@@ -18,4 +17,3 @@ public:
 
 };
 
-#endif

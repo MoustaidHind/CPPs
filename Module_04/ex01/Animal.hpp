@@ -1,6 +1,4 @@
-#ifndef ANIMAL_HPP
-#define ANIMAL_HPP
-
+#pragma once 
 
 #include <iostream>
 
@@ -21,5 +19,3 @@ public:
 };
 
 
-
-#endif

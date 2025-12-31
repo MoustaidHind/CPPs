@@ -17,7 +17,7 @@ class ICharacter
 	virtual void use(int idx, ICharacter& target) = 0;
 };
 
+// why i should use interface even it does do nothing, just define functions 
+// if we call interface how it work 
+
 #endif
-
-
-// is interface does not have constructors ?

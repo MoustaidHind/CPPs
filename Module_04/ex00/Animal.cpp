@@ -11,7 +11,6 @@ Animal::Animal(std::string type) : type(type)
 	std::cout << "Animal Parameterized Constructor called" << std::endl;
 }
 
-
 Animal::~Animal()
 {
 	std::cout << "Animal destructor called" << std::endl;

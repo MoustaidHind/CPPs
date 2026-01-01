@@ -13,6 +13,6 @@ public:
 
 	std::string getType() const;
 	void 		setType(const std::string newType);
-	void makeSound() const;
+	void		makeSound() const;
 
 };

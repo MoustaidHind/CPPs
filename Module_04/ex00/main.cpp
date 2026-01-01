@@ -19,13 +19,12 @@ int main()
 	delete i;
 	delete j;
 	delete meta;
-	// ...
 }
 {
 	std::cout << "\n Test wrong case \n" << std::endl;
 	const WrongAnimal* i = new WrongCat();
 	std::cout << i->getType() << " " << std::endl;
-	i->makeSound(); //will output the cat sound!
+	i->makeSound();
 
 	delete i;
 }

@@ -1,20 +1,14 @@
 #include "Ice.hpp"
 
-Ice::Ice() : AMateria("ice")
-{
-	std::cout << "default Ice" << std::endl;
-}
+Ice::Ice() : AMateria("ice") {}
 
 Ice::Ice(const Ice& src) : AMateria(src)
 {
 	*this = src;
-	std::cout << "copy" << std::endl;
 }
 
 Ice& Ice::operator = (const Ice& src)
 {
-	std::cout << " copy assignment " << std::endl;
-
 	if(this == &src)
 		return(*this);
 
@@ -23,10 +17,7 @@ Ice& Ice::operator = (const Ice& src)
 	return (*this);
 }
 
-Ice::~Ice()
-{
-	std::cout << "destructor " << std::endl;
-}
+Ice::~Ice() {}
 
 
 Ice* Ice::clone() const
@@ -38,8 +29,5 @@ Ice* Ice::clone() const
 
 void  Ice::use(ICharacter& target)
 {
-
-	std::cout << "* shoots an ice bolt at" << target.getName() << " *" << std::endl;
-
-	// name of the Character passed as a parameter
+	std::cout << "* shoots an ice bolt at " << target.getName() << " *" << std::endl;
 }

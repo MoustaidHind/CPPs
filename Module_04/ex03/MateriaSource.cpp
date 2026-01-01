@@ -6,14 +6,12 @@ MateriaSource::MateriaSource()
 {
 	for(int i = 0; i < 4; i++)
 		templates[i] = NULL;
-	std::cout << " constructor MateriaSource" << std::endl; 
 }
 
 MateriaSource::~MateriaSource()
 {
 	for(int i = 0; i < 4; i++)
 		delete templates[i];
-	std::cout << " destructor MateriaSource" << std::endl; 
 }
 
 MateriaSource::MateriaSource(const MateriaSource& src)

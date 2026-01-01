@@ -6,43 +6,57 @@
 #include "MateriaSource.hpp"
 #include "Character.hpp"
 
-// Role-Playing Game (RPG)
-
 
 int main()
 {
-	IMateriaSource* src = new MateriaSource();
-	src->learnMateria(new Ice());
-	src->learnMateria(new Cure());
+    IMateriaSource* src = new MateriaSource();
+    src->learnMateria(new Ice());
+    src->learnMateria(new Cure());
 
-	ICharacter* me = new Character("me");
+    ICharacter* me = new Character("me");
+    AMateria* tmp;
+    
+    tmp = src->createMateria("ice");
+    me->equip(tmp);
+    
+    tmp = src->createMateria("cure");
+    me->equip(tmp);
 
-	AMateria* tmp;
-	tmp = src->createMateria("ice");
-	me->equip(tmp);
-	tmp = src->createMateria("cure");
-	me->equip(tmp);
-	
-	ICharacter* bob = new Character("bob");
+    ICharacter* bob = new Character("bob");
+    
+    me->use(0, *bob);
+    me->use(1, *bob);
 
-	me->use(0, *bob);
-	me->use(1, *bob);
+    std::cout << "\n---- Fill inventory & unknown materia ----" << std::endl;
 
-	delete bob;
-	delete me;
-	delete src;
+	tmp = src->createMateria("fire"); 
+    if (tmp == NULL)
+        std::cout << "unknown type" << std::endl;
 
-	return 0;
+    me->equip(src->createMateria("ice"));
+    me->equip(src->createMateria("cure"));
+    
+    AMateria* extra = src->createMateria("ice");
+    me->equip(extra); // Should do nothing
+    std::cout << "item was not equipped" << std::endl;    
+    delete extra; 
 
+    std::cout << "\n---- deep copy ----" << std::endl;
+    Character* original = new Character("Original");
+    original->equip(new Ice());
+    
+    // Create copy
+    Character* copy = new Character(*original); // Call Copy Constructor
+    
+    delete original;
+    
+    std::cout << "Copy name: " << copy->getName() << std::endl;
+    copy->use(0, *bob); // print "shoots an ice bolt"
 
+    delete bob;
+    delete me;
+    delete src;
+    delete copy;
+    
+    return 0;
 }
-
-
-/*
-
-$> clang++ -W -Wall -Werror *.cpp
-$> ./a.out | cat -e
-* shoots an ice bolt at bob *$
-* heals bob's wounds *$
-
-*/

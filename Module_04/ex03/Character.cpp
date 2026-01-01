@@ -7,14 +7,18 @@ Character::Character()
 	name = "defaultCharacter";
 	for(int i = 0; i < 4; i++)
 		inventory[i] = NULL;
-	std::cout << " constructor character" << std::endl; 
 }
 
 Character::~Character()
 {
 	for(int i = 0; i < 4; i++)
-		delete(inventory[i]);
-	std::cout << " destructor character" << std::endl; 
+	{
+		if(inventory[i] != NULL)
+		{
+			delete(inventory[i]);
+			inventory[i] = NULL;
+		}
+	}
 }
 
 Character::Character(std::string name)
@@ -82,7 +86,6 @@ void Character::equip(AMateria* m)
 
 void Character::unequip(int idx)
 {
-	// Save the addresses before calling unequip()
 	if(idx >= 0 && idx < 4)
 		this->inventory[idx] = NULL;
 }

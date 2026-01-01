@@ -1,5 +1,4 @@
-#pragma once 
-
+#pragma once
 
 #include "AMateria.hpp"
 #include "ICharacter.hpp"

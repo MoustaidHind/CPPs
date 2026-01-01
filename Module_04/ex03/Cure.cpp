@@ -1,19 +1,14 @@
 #include "Cure.hpp"
 
-Cure::Cure() : AMateria("cure")
-{
-	std::cout << "default cure" << std::endl;
-}
+Cure::Cure() : AMateria("cure") {}
 
 Cure::Cure(const Cure& src) : AMateria(src)
 {
 	*this = src;
-	std::cout << "copy" << std::endl;
 }
 
 Cure& Cure::operator = (const Cure& src)
 {
-	std::cout << " copy assignment " << std::endl;
 
 	if(this == &src)
 		return(*this);
@@ -23,11 +18,7 @@ Cure& Cure::operator = (const Cure& src)
 	return (*this);
 }
 
-Cure::~Cure()
-{
-	std::cout << "destructor " << std::endl;
-}
-
+Cure::~Cure() {}
 
 Cure* Cure::clone() const
 {

@@ -8,9 +8,7 @@
 int main()
 {	
 	{
-		// Animal* arrAnimals[10];
-		Animal** arrAnimals = new Animal*[4];
-
+		Animal* arrAnimals[10];
 
 		for(int i = 0; i < 4; i++)
 		{
@@ -21,23 +19,18 @@ int main()
 			std::cout << "------------------------------------------------" << std::endl;
 		}
 
-
-		std::cout << "--------------- animal sounds ------------------" << std::endl;
+		std::cout << "--------------- Animals sounds ------------------" << std::endl;
 		for(int i = 0; i < 4; i++)
 			arrAnimals[i]->makeSound();
 
 		std::cout << "--------------- destructors --------------------" << std::endl;
-
 		for(int i = 0; i < 4; i++)
 		{
 			delete arrAnimals[i]; // delete each object 
 			std::cout << "------------------------------------------------" << std::endl;
 		}
 
-		delete  [] arrAnimals; // delete the array itsefl 
 	}
-
-
 	{
 		std::cout << "------------------------------------------------" << std::endl;
 		std::cout << "-             Testing deep copy                -" << std::endl;

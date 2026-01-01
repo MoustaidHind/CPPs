@@ -27,8 +27,8 @@ Cat& Cat::operator=(const Cat& src)
 	Animal::operator=(src);
 
 	delete catBrain;
-	catBrain = new Brain();
-	*catBrain = *src.catBrain;
+	this->catBrain = new Brain();
+	*this->catBrain = *src.catBrain;
 
 	return(*this);
 }

@@ -15,7 +15,7 @@ Dog::~Dog()
 Dog::Dog(const Dog& src) : Animal(src)
 {
 	dogBrain = new Brain();
-	*dogBrain = *src.dogBrain; // copy the content
+	*dogBrain = *src.dogBrain;
 	*this = src;
 }
 
@@ -26,7 +26,7 @@ Dog& Dog::operator=(const Dog& src)
 
 	Animal::operator=(src);
 	
-	delete dogBrain; // delete the old data
+	delete dogBrain;
 	dogBrain = new Brain();
 	*dogBrain = *src.dogBrain;
 

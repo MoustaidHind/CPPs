@@ -1,6 +1,5 @@
 #pragma once 
 
-
 #include <iostream>
 
 class AAnimal
@@ -15,9 +14,7 @@ public:
 	AAnimal& operator=(const AAnimal& src);
 	virtual ~AAnimal();
 
-	std::string getType() const ;
-	virtual void makeSound() const = 0;
+	std::string		getType() const ;
+	virtual void	makeSound() const = 0;
 };
-
-
 

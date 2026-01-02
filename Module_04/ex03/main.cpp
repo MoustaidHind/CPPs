@@ -53,6 +53,14 @@ int main()
     std::cout << "Copy name: " << copy->getName() << std::endl;
     copy->use(0, *bob); // print "shoots an ice bolt"
 
+	std::cout << "\n---- unequip test -----" << std::endl;
+	AMateria* newMateria = new Cure();
+	copy->equip(newMateria);
+    copy->unequip(1);
+    copy->use(1, *bob); // Should do nothing 
+    std::cout << "no action printed " << std::endl;
+
+	delete newMateria;
     delete bob;
     delete me;
     delete src;

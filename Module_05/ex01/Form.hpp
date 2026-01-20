@@ -1,7 +1,8 @@
 #pragma once
 
 #include <iostream>
-#include "Bureaucrat.hpp"
+
+class Bureaucrat;
 
 class Form
 {
@@ -14,21 +15,24 @@ private:
 public:
 	// Orthodox
 	Form();
-	Form(const std::string _name, int _grade);
+	Form(const std::string name, const int gradeS,const int gradeE);
 	Form(const Form &src);
 	Form &operator=(const Form &src);
 	~Form();
 
-	// getters && setters 
-	// ....
+	// getters
+	const std::string	getNameF() const;
+	bool				getIsSigned() const;
+	int					getGradeS() const;
+	int					getGradeE() const;
 
-	void beSigned(Bureaucrat &bur) ;
+	void beSigned(Bureaucrat &bur);
 
 	class GradeTooHighException : public std::exception {
 		public :
 		virtual const char* what() const throw()
 		{
-			return "Grade is too High!";
+			return "The Grade is too High!";
 		}
 	};
 
@@ -36,7 +40,7 @@ public:
 		public :
 		virtual const char* what() const throw()
 		{
-			return "Grade is too Low!";
+			return "The Grade is too Low!";
 		}
 	};
 

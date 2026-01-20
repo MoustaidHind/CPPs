@@ -1,8 +1,9 @@
 #pragma once 
 
 #include <iostream>
+#include "Form.hpp"
 
-class Form;
+// class Form;
 
 class Bureaucrat
 {
@@ -31,7 +32,7 @@ public:
 		public :
 		virtual const char* what() const throw()
 		{
-			return "Grade is too High!";
+			return "The Grade is too High!";
 		}
 	};
 
@@ -39,7 +40,7 @@ public:
 		public :
 		virtual const char* what() const throw()
 		{
-			return "Grade is too Low!";
+			return "The Grade is too Low!";
 		}
 	};
 };

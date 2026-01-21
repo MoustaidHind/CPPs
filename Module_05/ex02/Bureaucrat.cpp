@@ -50,7 +50,7 @@ void	Bureaucrat::decrementGrade() // add 3 become 4
 		throw Bureaucrat::GradeTooLowException();	
 	_grade++;
 }
-void Bureaucrat::signForm(Form &form)
+void Bureaucrat::signForm(AForm &form)
 {
 	try
 	{
@@ -63,19 +63,7 @@ void Bureaucrat::signForm(Form &form)
 		" because " ;
 		std::cerr << e.what() << std::endl;
 	}
-	
-
-	// if(form.getIsSigned())
-	// 	std::cout << this->getName() << " signed " << form.getNameF() << std::endl;
-	// else
-	// 	std::cout << this->getName() << " couldn’t sign " << form.getNameF() << 
-	// 	" because ...." << std::endl;
-
-	// <bureaucrat> signed <form>
-	// Otherwise, it will print something like:
-	// <bureaucrat> couldn’t sign <form> because <reason>.
 }
-
 
 // Overload function
 std::ostream &operator<<(std::ostream &os, const Bureaucrat &src)

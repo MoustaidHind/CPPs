@@ -1,9 +1,8 @@
 #pragma once 
 
 #include <iostream>
-#include "Form.hpp"
+#include "AForm.hpp"
 
-// class Form;
 
 class Bureaucrat
 {
@@ -26,7 +25,7 @@ public:
 	const std::string	getName() const;
 	int					getGrade() const;
 
-	void signForm(Form &form);
+	void signForm(AForm &form);
 
 	class GradeTooHighException : public std::exception {
 		public :
@@ -43,6 +42,9 @@ public:
 			return "The Grade is too Low!";
 		}
 	};
+
+
+	void executeForm(AForm const & form) const; // print → "<bureaucrat> executed <form>"
 };
 
 std::ostream &operator<<(std::ostream &os, const Bureaucrat &src); // <name>, bureaucrat grade <grade>

@@ -4,7 +4,7 @@
 
 class Bureaucrat;
 
-class Form
+class AForm
 {
 private:
 	const std::string	_nameF;
@@ -14,11 +14,11 @@ private:
 
 public:
 	// Orthodox
-	Form();
-	Form(const std::string name, const int gradeS,const int gradeE);
-	Form(const Form &src);
-	Form &operator=(const Form &src);
-	~Form();
+	AForm();
+	AForm(const std::string name, const int gradeS,const int gradeE);
+	AForm(const AForm &src);
+	AForm &operator=(const AForm &src);
+	~AForm();
 
 	// getters
 	const std::string	getNameF() const;
@@ -44,7 +44,8 @@ public:
 		}
 	};
 
-	// at least one pure function 
+	// Pure function
+	virtual void execute(Bureaucrat const & executor) const = 0;
 };
 
-std::ostream &operator<<(std::ostream &os, const Form &src); // <name>, bureaucrat grade <grade>
+std::ostream &operator<<(std::ostream &os, const AForm &src); // <name>, bureaucrat grade <grade>

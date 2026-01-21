@@ -1,10 +1,19 @@
 #pragma once
 
-class ShrubberyCreationForm
+#include <iostream>
+#include "AForm.hpp"
+
+class ShrubberyCreationForm : public AForm
 {
 private:
-	/* data */
+	std::string target;
 public:
-	ShrubberyCreationForm(/* args */);
+	// orthodox
+	ShrubberyCreationForm();
+	ShrubberyCreationForm(const std::string target);
+	ShrubberyCreationForm(const ShrubberyCreationForm &src);
+	ShrubberyCreationForm &operator=(const ShrubberyCreationForm &src);
 	~ShrubberyCreationForm();
+
+	void execute(Bureaucrat const & executor) const;
 };

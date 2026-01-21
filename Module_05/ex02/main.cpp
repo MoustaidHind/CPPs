@@ -1,34 +1,57 @@
 #include "Bureaucrat.hpp"
 #include "AForm.hpp"
+#include "PresidentialPardonForm.hpp"
+#include "RobotomyRequestForm.hpp"
+#include "ShrubberyCreationForm.hpp"
 
+#include <cstdlib> // For srand
+#include <ctime>   // For time
 
-int main() {
-    try
-	{
-        Bureaucrat bob("Bob", 10);
-        // AForm contract("Contract", 20, 20);
-        
-        std::cout << bob << std::endl;
-        // std::cout << contract << std::endl;
+int main()
+{
+    // Seed the random number generator for Robotomy
+    std::srand(std::time(0));
 
-        // bob.signForm(contract);
-        // std::cout << contract << std::endl;
+    try {
+        Bureaucrat boss("The Boss", 1);
+        std::cout << boss << std::endl;
+
+        ShrubberyCreationForm shrub("Home");
+        RobotomyRequestForm robot("bob");
+        PresidentialPardonForm pardon("alice");
+
+        std::cout << "\n--- Shrubbery Creation ---" << std::endl;
+        // Boss signs and executes
+        boss.signForm(shrub);
+        boss.executeForm(shrub); 
+
+        std::cout << "\n--- Robotomy Request ---" << std::endl;
+        boss.signForm(robot);
+		// std::cout << std::endl;
+		boss.executeForm(robot);
+        boss.executeForm(robot);
+        boss.executeForm(robot);
+        boss.executeForm(robot);
+
+        std::cout << "\n--- Presidential Pardon ---" << std::endl;
+        boss.signForm(pardon);
+        boss.executeForm(pardon);
+
     }
     catch (std::exception &e) {
-        std::cout << "Error: " << e.what() << std::endl;
+        std::cout << "Exception: " << e.what() << std::endl;
     }
 
-	std::cout << "##############################################" << std::endl;
+    std::cout << "\n--- Failure Case ---" << std::endl;
+    try {
+        Bureaucrat jone("jone", 150); // Grade 150 (Weakest)
+        RobotomyRequestForm robot2("job");
 
-    try
-	{
-        Bureaucrat alice("alice", 150);
-        // AForm secretDoc("SecretDoc", 1, 1);
+        // jone tries to sign
+        jone.signForm(robot2); // Should print error message (not crash)
 
-        std::cout << alice << std::endl;
-        // std::cout << secretDoc << std::endl;
-
-        // alice.signForm(secretDoc);
+        // jone tries to execute (This should THROW an exception)
+        jone.executeForm(robot2);
     }
     catch (std::exception &e) {
         std::cout << "Error: " << e.what() << std::endl;

@@ -55,7 +55,7 @@ void Bureaucrat::signForm(AForm &form)
 	try
 	{
 		form.beSigned(*this);
-		std::cout << this->getName() << " signed " << form.getNameF() << std::endl;
+		std::cout << this->getName() << " signed " << form.getNameF() << " form successfully." << std::endl;
 	}
 	catch(const std::exception& e)
 	{
@@ -65,9 +65,19 @@ void Bureaucrat::signForm(AForm &form)
 	}
 }
 
+void Bureaucrat::executeForm(AForm const & form) const // print → "<bureaucrat> executed <form>"
+{
+	if(this->getGrade() > form.getGradeE())
+		throw AForm::GradeTooLowException();
+
+	form.execute(*this);
+	std::cout << this->getName() << " executed " << form.getNameF() << " form successfully." << std::endl;
+}
+
 // Overload function
 std::ostream &operator<<(std::ostream &os, const Bureaucrat &src)
 {
 	os << src.getName() << " , bureaucrat grade " << src.getGrade();
 	return(os);
 } 
+

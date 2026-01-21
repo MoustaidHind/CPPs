@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include "AForm.hpp"
+#include <fstream>
 
 class ShrubberyCreationForm : public AForm
 {

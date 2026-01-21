@@ -32,7 +32,7 @@ public:
 		public :
 		virtual const char* what() const throw()
 		{
-			return "The Grade is too High!";
+			return "The Grade is too High !!";
 		}
 	};
 
@@ -40,10 +40,18 @@ public:
 		public :
 		virtual const char* what() const throw()
 		{
-			return "The Grade is too Low!";
+			return "The Grade is too Low !!";
 		}
 	};
 
+	class FormNotSignedException : public std::exception {
+		public :
+		virtual const char* what() const throw()
+		{
+			return "The Form Not Signed Yet !!";
+		}
+	};
+	
 	// Pure function
 	virtual void execute(Bureaucrat const & executor) const = 0;
 };

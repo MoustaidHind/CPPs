@@ -8,61 +8,48 @@
 #include <cstdlib> // For srand
 #include <ctime>   // For time
 
+
 int main()
 {
-
-	Intern	someRandomIntern;
-	AForm*	rrf;
-	
-	rrf = someRandomIntern.makeForm("robotomy request", "Bender");
+    Intern 		someRandomIntern;
+    Bureaucrat	boss("Boss", 1); // Rank 1 to sign everything
+    AForm* rrf;
     
-	// // Seed the random number generator for Robotomy
-    // std::srand(std::time(0));
+    std::cout << "Create robotomy request ---->" << std::endl;
+    rrf = someRandomIntern.makeForm("robotomy request", "Bender");
+    
+	if(rrf)
+	{
+		try
+		{
+			boss.signForm(*rrf);
+			boss.executeForm(*rrf);
+		}
+		catch (std::exception &e)
+		{
+			std::cout << "Bureaucrat Error : " << e.what() << std::endl;
+		}
+		delete rrf;
+	}
 
-    // try {
-    //     Bureaucrat boss("The Boss", 1);
-    //     std::cout << boss << std::endl;
+    std::cout << "\nCreate Shrubbery ---->" << std::endl;
+    AForm*		shru;
+    shru = someRandomIntern.makeForm("shrubbery creation", "Home");
+    if (shru)
+    {
+		boss.signForm(*shru);	
+        delete shru;
+    }
 
-    //     ShrubberyCreationForm shrub("Home");
-    //     RobotomyRequestForm robot("bob");
-    //     PresidentialPardonForm pardon("alice");
+    std::cout << "\nInvalid Form ---->" << std::endl;
+    AForm*		wrong;
+    
+    wrong = someRandomIntern.makeForm("pizza order", "Dominos");
 
-    //     std::cout << "\n--- Shrubbery Creation ---" << std::endl;
-    //     // Boss signs and executes
-    //     boss.signForm(shrub);
-    //     boss.executeForm(shrub); 
-
-    //     std::cout << "\n--- Robotomy Request ---" << std::endl;
-    //     boss.signForm(robot);
-	// 	// std::cout << std::endl;
-	// 	boss.executeForm(robot);
-    //     boss.executeForm(robot);
-    //     boss.executeForm(robot);
-    //     boss.executeForm(robot);
-
-    //     std::cout << "\n--- Presidential Pardon ---" << std::endl;
-    //     boss.signForm(pardon);
-    //     boss.executeForm(pardon);
-
-    // }
-    // catch (std::exception &e) {
-    //     std::cout << "Exception: " << e.what() << std::endl;
-    // }
-
-    // std::cout << "\n--- Failure Case ---" << std::endl;
-    // try {
-    //     Bureaucrat jone("jone", 150); // Grade 150 (Weakest)
-    //     RobotomyRequestForm robot2("job");
-
-    //     // jone tries to sign
-    //     jone.signForm(robot2); // Should print error message (not crash)
-
-    //     // jone tries to execute (This should THROW an exception)
-    //     jone.executeForm(robot2);
-    // }
-    // catch (std::exception &e) {
-    //     std::cout << "Error: " << e.what() << std::endl;
-    // }
-
+    if (wrong)
+    {
+		boss.signForm(*wrong);	
+        delete wrong;
+    }
     return 0;
 }

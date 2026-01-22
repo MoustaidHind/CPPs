@@ -11,7 +11,6 @@ private:
 
 public:
 	Intern();
-	// Intern(std::string formType, std::string target);
 	Intern(const Intern &src);
 	Intern &operator=(const Intern &src);
 	~Intern();

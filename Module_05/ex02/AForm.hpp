@@ -18,7 +18,7 @@ public:
 	AForm(const std::string name, const int gradeS,const int gradeE);
 	AForm(const AForm &src);
 	AForm &operator=(const AForm &src);
-	~AForm();
+	virtual ~AForm();
 
 	// getters
 	const std::string	getNameF() const;

@@ -2,16 +2,15 @@
 
 
 Bureaucrat::Bureaucrat() : _name("defaultName"), _grade(1)
-{
+{}
 
-}
-
-Bureaucrat::Bureaucrat(const std::string name, int grade) : _name(name), _grade(grade)
+Bureaucrat::Bureaucrat(const std::string name, int grade) : _name(name)
 {
-	if(getGrade() < 1)
+	if(grade < 1)
 		throw Bureaucrat::GradeTooHighException();
-	else if(getGrade() > 150)
+	else if(grade > 150)
 		throw Bureaucrat::GradeTooLowException();
+	_grade = grade;
 }
 
 Bureaucrat::Bureaucrat(const Bureaucrat &src) : _name(src.getName())

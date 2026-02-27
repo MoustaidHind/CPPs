@@ -10,7 +10,7 @@ int main()
 		b1.decrementGrade();
 		std::cout << b1;
 	}
-	catch(const std::exception& e)
+	catch(std::exception& e)
 	{
 		std::cerr << e.what() << std::endl;
 	}
@@ -18,7 +18,7 @@ int main()
 	try {
         Bureaucrat b2("alice", 0);
     }
-    catch (std::exception &e) {
+    catch (std::exception& e) {
         std::cout << e.what() << std::endl;
     }
 
@@ -32,4 +32,5 @@ int main()
     catch (std::exception &e) {
         std::cout << e.what() << std::endl;
     }
+
 }

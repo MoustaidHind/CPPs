@@ -8,9 +8,9 @@ class Form
 {
 private:
 	const std::string	_nameF;
-	bool				_isSigned;  // boolean indicating whether it is signed (at construction, it is not).
-	const int			_gradeS; // constant grade required to sign it.
-	const int			_gradeE; // constant grade required to execute it.
+	bool				_isSigned;
+	const int			_gradeS;
+	const int			_gradeE;
 
 public:
 	// Orthodox
@@ -46,4 +46,4 @@ public:
 
 };
 
-std::ostream &operator<<(std::ostream &os, const Form &src); // <name>, bureaucrat grade <grade>
+std::ostream &operator<<(std::ostream &os, const Form &src);

@@ -29,7 +29,6 @@ Bureaucrat &Bureaucrat::operator=(const Bureaucrat &src)
 Bureaucrat::~Bureaucrat() {}
 
 
-
 // Getters
 const std::string	Bureaucrat::getName() const { return(_name); }
 int  Bureaucrat::getGrade() const { return(_grade); }
@@ -38,18 +37,20 @@ int  Bureaucrat::getGrade() const { return(_grade); }
 // Member functions 
 void	Bureaucrat::incrementGrade()  // substract 2 become 1
 {
-	std::cout << "increment the grade of " << getName() << std::endl ;
-	if(getGrade() <= 1)
+	if(getGrade() == 1)
 		throw Bureaucrat::GradeTooHighException();
+	std::cout << "increment the grade of " << getName() << std::endl ;
 	_grade--;
 }
+
 void	Bureaucrat::decrementGrade() // add 3 become 4
 {
-	std::cout << "decrement the grade of " << getName() << std::endl ;
 	if(getGrade() >= 150)
 		throw Bureaucrat::GradeTooLowException();	
+	std::cout << "decrement the grade of " << getName() << std::endl ;
 	_grade++;
 }
+
 void Bureaucrat::signForm(Form &form)
 {
 	try
@@ -57,23 +58,12 @@ void Bureaucrat::signForm(Form &form)
 		form.beSigned(*this);
 		std::cout << this->getName() << " signed " << form.getNameF() << std::endl;
 	}
-	catch(const std::exception& e)
+	catch(std::exception& e)
 	{
 		std::cerr << this->getName() << " couldn't sign " << form.getNameF() << 
 		" because " ;
 		std::cerr << e.what() << std::endl;
 	}
-	
-
-	// if(form.getIsSigned())
-	// 	std::cout << this->getName() << " signed " << form.getNameF() << std::endl;
-	// else
-	// 	std::cout << this->getName() << " couldn’t sign " << form.getNameF() << 
-	// 	" because ...." << std::endl;
-
-	// <bureaucrat> signed <form>
-	// Otherwise, it will print something like:
-	// <bureaucrat> couldn’t sign <form> because <reason>.
 }
 
 

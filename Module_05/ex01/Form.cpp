@@ -31,15 +31,15 @@ Form::~Form() {}
 
 
 // Getters
-int Form::getGradeE() const {	return(_gradeE); }
-int Form::getGradeS() const {	return(_gradeS); }
+int Form::getGradeE() const { return(_gradeE); }
+int Form::getGradeS() const { return(_gradeS); }
 bool	Form::getIsSigned() const {	return(_isSigned); }
 const std::string	Form::getNameF() const { return(_nameF); }
 
 
 void Form::beSigned(Bureaucrat &bur)
 {
-	if(bur.getGrade() <= this->getGradeS()) // grade 1 is higher than grade 2.
+	if(bur.getGrade() <= this->getGradeS())
 		this->_isSigned = true;
 	else 
 		throw Form::GradeTooLowException();

@@ -22,7 +22,7 @@ ShrubberyCreationForm &ShrubberyCreationForm::operator=(const ShrubberyCreationF
 ShrubberyCreationForm::~ShrubberyCreationForm()
 {}
 
-void ShrubberyCreationForm::execute(Bureaucrat const & executor) const
+void ShrubberyCreationForm::execute(Bureaucrat const& executor) const
 {
 	if(this->getIsSigned() == false)
 		throw AForm::FormNotSignedException();
@@ -30,7 +30,12 @@ void ShrubberyCreationForm::execute(Bureaucrat const & executor) const
 		throw AForm::GradeTooLowException();
 
 	std::string fileName = target + "_shrubbery";
-	std::ofstream outfile(fileName.c_str()); // check if failed 
+	std::ofstream outfile(fileName.c_str());
+	if (!outfile.is_open())
+	{
+		std::cerr << "Error: file not opened "<< std::endl;
+		return;
+	}
 
 	outfile << "       _-_" << std::endl;
 	outfile << "    /~~   ~~\\" << std::endl;

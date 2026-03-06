@@ -5,15 +5,15 @@
 #include "ShrubberyCreationForm.hpp"
 #include "Intern.hpp"
 
-#include <cstdlib> // For srand
-#include <ctime>   // For time
+#include <cstdlib> // srand
+#include <ctime>   // time
 
 
 int main()
 {
     Intern 		someRandomIntern;
-    Bureaucrat	boss("Boss", 1); // Rank 1 to sign everything
-    AForm* rrf;
+    Bureaucrat	boss("Boss", 1);
+    AForm*		rrf;
     
     std::cout << "Create robotomy request ---->" << std::endl;
     rrf = someRandomIntern.makeForm("robotomy request", "Bender");
@@ -44,7 +44,7 @@ int main()
     std::cout << "\nInvalid Form ---->" << std::endl;
     AForm*		wrong;
     
-    wrong = someRandomIntern.makeForm("pizza order", "Dominos");
+    wrong = someRandomIntern.makeForm("order", "Dominos");
 
     if (wrong)
     {

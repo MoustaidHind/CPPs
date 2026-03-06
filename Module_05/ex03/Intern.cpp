@@ -53,6 +53,5 @@ AForm* Intern::makeForm(const std::string formType, const std::string target)
 		return NULL;
 	};
 
-
 }
 

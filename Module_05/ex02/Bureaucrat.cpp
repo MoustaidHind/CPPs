@@ -1,8 +1,8 @@
 #include "Bureaucrat.hpp"
 
-// Orthodox
 Bureaucrat::Bureaucrat() : _name("defaultName"), _grade(1)
 {}
+
 Bureaucrat::Bureaucrat(const std::string name, int grade) : _name(name), _grade(grade)
 {
 	if(getGrade() < 1)
@@ -29,21 +29,18 @@ Bureaucrat &Bureaucrat::operator=(const Bureaucrat &src)
 Bureaucrat::~Bureaucrat() {}
 
 
-
-// Getters
 const std::string	Bureaucrat::getName() const { return(_name); }
 int  Bureaucrat::getGrade() const { return(_grade); }
 
 
-// Member functions 
-void	Bureaucrat::incrementGrade()  // substract 2 become 1
+void	Bureaucrat::incrementGrade()
 {
 	std::cout << "increment the grade of " << getName() << std::endl ;
 	if(getGrade() <= 1)
 		throw Bureaucrat::GradeTooHighException();
 	_grade--;
 }
-void	Bureaucrat::decrementGrade() // add 3 become 4
+void	Bureaucrat::decrementGrade()
 {
 	std::cout << "decrement the grade of " << getName() << std::endl ;
 	if(getGrade() >= 150)
@@ -65,7 +62,7 @@ void Bureaucrat::signForm(AForm &form)
 	}
 }
 
-void Bureaucrat::executeForm(AForm const & form) const // print → "<bureaucrat> executed <form>"
+void Bureaucrat::executeForm(AForm const & form) const
 {
 	if(this->getGrade() > form.getGradeE())
 		throw AForm::GradeTooLowException();
@@ -74,7 +71,6 @@ void Bureaucrat::executeForm(AForm const & form) const // print → "<bureaucrat
 	std::cout << this->getName() << " executed " << form.getNameF() << " form successfully." << std::endl;
 }
 
-// Overload function
 std::ostream &operator<<(std::ostream &os, const Bureaucrat &src)
 {
 	os << src.getName() << " , bureaucrat grade " << src.getGrade();

@@ -10,7 +10,6 @@ private:
 	std::string target;
 	RobotomyRequestForm();
 public:
-	// orthodox
 	RobotomyRequestForm(const std::string target);
 	RobotomyRequestForm(const RobotomyRequestForm &src);
 	RobotomyRequestForm &operator=(const RobotomyRequestForm &src);
@@ -18,5 +17,3 @@ public:
 
 	void execute(Bureaucrat const & executor) const;
 };
-
-// is i should remove default constructor ? 

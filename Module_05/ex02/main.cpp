@@ -4,13 +4,12 @@
 #include "RobotomyRequestForm.hpp"
 #include "ShrubberyCreationForm.hpp"
 
-#include <cstdlib> // For srand
-#include <ctime>   // For time
+#include <cstdlib> // srand
+#include <ctime>   // time
 
 int main()
 {
-    // Seed the random number generator for Robotomy
-    std::srand(std::time(0));
+    std::srand(std::time(NULL));
 
     try {
         Bureaucrat boss("The Boss", 1);
@@ -21,14 +20,13 @@ int main()
         PresidentialPardonForm pardon("alice");
 
         std::cout << "\n--- Shrubbery Creation ---" << std::endl;
-        // Boss signs and executes
         boss.signForm(shrub);
         boss.executeForm(shrub); 
 
         std::cout << "\n--- Robotomy Request ---" << std::endl;
         boss.signForm(robot);
 		// std::cout << std::endl;
-		boss.executeForm(robot);
+        boss.executeForm(robot);
         boss.executeForm(robot);
         boss.executeForm(robot);
         boss.executeForm(robot);
@@ -44,13 +42,11 @@ int main()
 
     std::cout << "\n--- Failure Case ---" << std::endl;
     try {
-        Bureaucrat jone("jone", 150); // Grade 150 (Weakest)
+        Bureaucrat jone("jone", 150);
         RobotomyRequestForm robot2("job");
 
-        // jone tries to sign
-        jone.signForm(robot2); // Should print error message (not crash)
+        jone.signForm(robot2);
 
-        // jone tries to execute (This should THROW an exception)
         jone.executeForm(robot2);
     }
     catch (std::exception &e) {

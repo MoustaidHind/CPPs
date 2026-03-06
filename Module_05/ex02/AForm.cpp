@@ -1,7 +1,6 @@
 #include "AForm.hpp"
 #include "Bureaucrat.hpp"
 
-// Orthodox
 AForm::AForm() : _nameF("defaultAForm"), _isSigned(false), _gradeS(1), _gradeE(1) 
 {}
 
@@ -30,7 +29,6 @@ AForm &AForm::operator=(const AForm &src)
 AForm::~AForm() {}
 
 
-// Getters
 int AForm::getGradeE() const {	return(_gradeE); }
 int AForm::getGradeS() const {	return(_gradeS); }
 bool	AForm::getIsSigned() const {	return(_isSigned); }
@@ -39,13 +37,12 @@ const std::string	AForm::getNameF() const { return(_nameF); }
 
 void AForm::beSigned(Bureaucrat &bur)
 {
-	if(bur.getGrade() <= this->getGradeS()) // grade 1 is higher than grade 2.
+	if(bur.getGrade() <= this->getGradeS())
 		this->_isSigned = true;
 	else 
 		throw AForm::GradeTooLowException();
 }
 
-// Overloaded function
 std::ostream &operator<<(std::ostream &os, const AForm &src)
 {
 	os << "AForm Name: " << src.getNameF() << ", Is Signed: " << src.getIsSigned() <<

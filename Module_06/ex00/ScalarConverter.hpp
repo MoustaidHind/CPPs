@@ -1,13 +1,19 @@
 #pragma once
 
 #include <iostream>
+#include <cstdlib>
+#include <stdlib.h> // should not still
+#include <iomanip>
+#include <limits.h>
 
 class ScalarConverter
 {
 private:
-	ScalarConverter(); // should i make OCF also private or just constructor ?? 
+	ScalarConverter();
+	ScalarConverter(const ScalarConverter&){};
+	const ScalarConverter operator==(const ScalarConverter&);
+	~ScalarConverter(){};
 
 public:
-
-	static void convert(std::string str);
+	static void convert(const std::string& str);
 };

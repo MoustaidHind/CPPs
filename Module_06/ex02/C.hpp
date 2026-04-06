@@ -9,7 +9,7 @@ private:
 
 public:
 	C(/* args */){};
-	~C() {};
+	virtual ~C() {};
 };
 
 

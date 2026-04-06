@@ -1,29 +1,59 @@
 
 #include "type.hpp"
+#include "A.hpp"
+#include "B.hpp"
+#include "C.hpp"
+#include <iostream>
 
 
-/* 
-It randomly instantiates A, B, or C and returns the instance as a Base pointer. Feel free
-to use anything you like for the random choice implementation.
-*/
 Base* generate(void)
 {
-
+	int rnd = std::rand() % 3;
+	if (rnd == 0)
+		return (new A);
+	else if(rnd == 1)
+		return(new B);
+	return(new C);
 }
 
-/* 
-It prints the actual type of the object pointed to by p: "A", "B", or "C".
-*/
+
 void identify(Base* p)
 {
+	if( dynamic_cast<A*>(p) )
+		std::cout << "Derived class is A" << std::endl;
+	else if( dynamic_cast<B*>(p) )
+		std::cout << "Derived class is B" << std::endl;
+	else if( dynamic_cast<C*>(p) )
+		std::cout << "Derived class is C" << std::endl;
 
 }
 
-/* 
-It prints the actual type of the object referenced by p: "A", "B", or "C". Using a pointer
-inside this function is forbidden.
-*/
+
 void identify(Base& p)
 {
+	try
+	{
+		(void)dynamic_cast<A&>(p);
+		std::cout << "Derived class is A" << std::endl;
+		return;
+	}catch(const std::exception& e)
+	{}
+
+	try
+	{
+		(void)dynamic_cast<B&>(p);
+		std::cout << "Derived class is B" << std::endl;
+		return;
+	}catch(const std::exception& e)
+	{}
+
+	try
+	{
+		(void)dynamic_cast<C&>(p);
+		std::cout << "Derived class is C" << std::endl;
+		return;
+	}catch(const std::exception& e)
+	{}
 
 }
+

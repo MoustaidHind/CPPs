@@ -1,18 +1,10 @@
 #pragma once
 
-// class Data
-// {
-// private:
-// 	std::string str;
+#include <string>
 
-// public:
-// 	Data();
-// 	Data(const Data& obj); // its should be 
-// 	const Data operator==(const Data& obj);
-// 	~Data();
-// };
+// class where everything is public by default
 
 struct Data
 {
-	std::string;
+	std::string str;
 };

@@ -1,20 +1,22 @@
-#pragma once
-
+#ifndef SERIALIZER_HPP
+#define SERIALIZER_HPP
 
 #include <iostream>
+#include <string>
+#include <stdint.h>
+#include "Data.hpp"
 
-
-class Serializer.
+class Serializer
 {
 private:
 	Serializer(/* args */);
 	Serializer(const Serializer&);
-	const Serializer operator==(const Serializer&);
-	~Serializer(){};
+	Serializer& operator=(const Serializer&);
+	~Serializer();
 
 public:
-	static uintptr_t serialize(Data* ptr); // It takes a pointer and converts it to the unsigned integer type uintptr_t.
-	static Data* deserialize(uintptr_t raw); // It takes an unsigned integer parameter and converts it to a pointer to Data.
-
-
+	static uintptr_t serialize(Data* ptr);
+	static Data* deserialize(uintptr_t raw);
 };
+
+#endif

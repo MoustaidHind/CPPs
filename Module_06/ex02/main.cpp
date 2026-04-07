@@ -12,14 +12,13 @@ int main()
 
     std::cout << "Pointer version Result: ";
     identify(derived);
-    std::cout << "\n--------------------------------" << std::endl;
+    std::cout << "--------------------------------" << std::endl;
 
 
     std::cout << "Reference version Result: ";
     identify(*derived);
-    std::cout << "\n--------------------------------" << std::endl;
+    std::cout << "--------------------------------" << std::endl;
 
 	
     delete derived;
-
 }

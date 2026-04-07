@@ -11,7 +11,4 @@ void identify(Base* p);
 void identify(Base& p);
 
 
-
-
-
 #endif

@@ -6,7 +6,7 @@ int main(int ac, char **av)
 
 	if(ac != 2)
 	{
-		std::cerr << "should be just a one argument !" << std::endl;
+		std::cerr << "<Usage> <./convert \"input\"> "<< std::endl;
 		return 1;
 	}
 	

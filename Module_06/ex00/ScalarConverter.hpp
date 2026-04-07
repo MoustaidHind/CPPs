@@ -3,9 +3,8 @@
 
 #include <iostream>
 #include <cstdlib>
-#include <stdlib.h> // should not still
 #include <iomanip>
-#include <limits.h>
+#include <climits>
 
 class ScalarConverter
 {

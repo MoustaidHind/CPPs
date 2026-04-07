@@ -28,13 +28,5 @@ int main()
 
     delete d1;
 
-    return 0;
 }
 
-
-
-/*
-
--> is the uintptr_t designed just to hold a pointer, what the other purpose for it, why i should use this type ?
-
-*/

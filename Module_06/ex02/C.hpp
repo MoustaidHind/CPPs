@@ -5,10 +5,8 @@
 
 class C : public Base
 {
-private:
-
 public:
-	C(/* args */){};
+	C(){};
 	virtual ~C() {};
 };
 

@@ -6,7 +6,7 @@
 class Base
 {
 public:
-	virtual ~Base(){}; // has a public virtual destructor only.
+	virtual ~Base(){};
 };
 
 

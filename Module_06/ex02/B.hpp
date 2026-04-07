@@ -5,10 +5,8 @@
 
 class B : public Base
 {
-private:
-
 public:
-	B(/* args */){};
+	B(){};
 	virtual ~B() {};
 };
 

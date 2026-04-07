@@ -1,10 +1,13 @@
-#pragma once
+#ifndef DATA_HPP
+#define DATA_HPP
+
 
 #include <string>
-
-// class where everything is public by default
 
 struct Data
 {
 	std::string str;
 };
+
+
+#endif

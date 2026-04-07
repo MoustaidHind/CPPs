@@ -9,7 +9,7 @@
 class Serializer
 {
 private:
-	Serializer(/* args */);
+	Serializer();
 	Serializer(const Serializer&);
 	Serializer& operator=(const Serializer&);
 	~Serializer();

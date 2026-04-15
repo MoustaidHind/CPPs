@@ -5,6 +5,7 @@
 template <typename T>
 class Array
 {
+
 private:
 	T *arr;
 	int len;

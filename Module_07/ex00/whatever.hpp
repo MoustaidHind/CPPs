@@ -3,7 +3,6 @@
 
 #include <iostream>
 
-// swap: Swaps the values of two given parameters. Does not return anything.
 template <typename T>
 void swap(T &a, T &b)
 {
@@ -13,8 +12,6 @@ void swap(T &a, T &b)
 
 }
 
-// min: Compares the two values passed as parameters and returns the smallest one.
-// If they are equal, it returns the second one.
 template <typename T>
 T const &min(T const &a, T const &b)
 {
@@ -24,8 +21,6 @@ T const &min(T const &a, T const &b)
 }
 
 
-// max: Compares the two values passed as parameters and returns the greatest one.
-// If they are equal, it returns the second one.
 template <typename T>
 T const &max(T const &a, T const &b)
 {
@@ -35,5 +30,3 @@ T const &max(T const &a, T const &b)
 }
 
 #endif
-
-// why we use typename , what refere for

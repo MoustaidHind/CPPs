@@ -1,26 +1,18 @@
 #include "iter.hpp"
 
-
-
-#include <iostream>
-
-// A regular function that works with integers
 void printInt(int &n) {
     std::cout << n << " ";
 }
 
-// A regular function that works with strings
 void printString(std::string &s) {
     std::cout << s << " ";
 };
 
-// A template function to test if iter can take an instantiated template [cite: 195]
 template <typename T>
 void printElement(T &x) {
     std::cout << x << " ";
 }
 
-// A function that modifies the element (to test non-const behavior)
 void increment(int &n) {
     n++;
 }

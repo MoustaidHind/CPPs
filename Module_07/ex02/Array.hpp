@@ -2,28 +2,69 @@
 #define ARRAY_HPP
 
 
-template <class Array>
+template <typename T>
 class Array
 {
 private:
-	/* data */
+	T *arr;
+	int len;
+
 public:
-	Array() { Array arr[]; };
+	Array()
+	{
+		len = 0;
+		arr = new T[len];
+	};
 	Array(unsigned int n)
 	{
-		Array arr[n];
-		for (size_t i = 0; i < n; i++)
-		{
-			arr[i] = 0;
-		}
+		len = n;
+		arr = new T[len]();
 	};
+	Array(const Array& src)
+	{
+		this->len = src.len;
+		this->arr = new T[src.len];	
+		for (int i = 0; i < src.len; i++)
+		{
+			this->arr[i] = src.arr[i];
+		}
+	}
+	Array& operator=(const Array& src)
+	{
+		if(this == &src)
+			return(*this);
 
-	~Array();
+		delete [] this->arr;
+
+		this->len = src.len;
+		this->arr = new T[src.len];	
+		for (int i = 0; i < src.len; i++)
+		{
+			this->arr[i] = src.arr[i];
+		}
+
+		return(*this);
+	}
+
+	~Array() {delete [] this->arr;};
+
+
+	T& operator[](int i)
+	{
+		if(i < 0 || i >= len)
+			throw std::exception();
+		return(arr[i]);
+	}
+
+	const T& operator[](int i) const
+	{
+		if(i < 0 || i >= len)
+			throw std::exception();
+		return(arr[i]);
+	}
+
+	size_t size() const { return len; }
 };
-
-
-
-
 
 
 #endif

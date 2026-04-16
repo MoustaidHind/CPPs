@@ -2,6 +2,7 @@
 #define ITER_HPP
 
 #include <iostream>
+#include <string>
 
 template <typename T, typename F>
 void iter(T *arr, size_t const &len, F func)

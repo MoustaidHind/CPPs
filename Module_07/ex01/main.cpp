@@ -2,44 +2,38 @@
 
 void printInt(int &n) {
     std::cout << n << " ";
-}
+};
 
-void printString(std::string &s) {
-    std::cout << s << " ";
+void increment(int &n) {
+    n++;
 };
 
 template <typename T>
 void printElement(T &x) {
     std::cout << x << " ";
-}
+};
 
-void increment(int &n) {
-    n++;
-}
-
-int main() {
-    // Test 1: Integer array with a regular function
-    int intArray[] = {1, 2, 3, 4, 5};
+int main()
+{
+	int intArray[] = {1, 2, 3, 4, 5};
     size_t intLen = 5;
-    
+
+    std::cout << "-------------------------------" << std::endl;
     std::cout << "Original Integers: ";
-    ::iter(intArray, intLen, printInt); // Using :: to ensure it uses your global template
-    std::cout << std::endl;
+    ::iter(intArray, intLen, printInt); 
+    std::cout << "\n-------------------------------" << std::endl;
 
-    // Test 2: Incrementing values (testing modification)
     ::iter(intArray, intLen, increment);
-    std::cout << "Incremented Integers: ";
+    std::cout << "Incremente Integers: ";
     ::iter(intArray, intLen, printInt);
-    std::cout << std::endl;
+    std::cout << "\n-------------------------------" << std::endl;
 
-    // Test 3: String array with a template function [cite: 195]
-    std::string strArray[] = {"Hello", "1337", "Hind"};
+    std::string strArray[] = {"Hello", "World", "1337"};
     size_t strLen = 3;
     
     std::cout << "Strings: ";
-    // We must explicitly instantiate the template function passed as the 3rd parameter
     ::iter(strArray, strLen, printElement<std::string>); 
-    std::cout << std::endl;
+    std::cout << "\n-------------------------------" << std::endl;
 
 
     return 0;

@@ -11,25 +11,26 @@ private:
 	int len;
 
 public:
-	Array()
-	{
+	Array()	{
 		len = 0;
-		arr = new T[len];
+		arr = NULL;
 	};
-	Array(unsigned int n)
-	{
+
+	Array(unsigned int n) {
 		len = n;
 		arr = new T[len]();
 	};
+
 	Array(const Array& src)
 	{
 		this->len = src.len;
-		this->arr = new T[src.len];	
+		this->arr = new T[src.len]();	
 		for (int i = 0; i < src.len; i++)
 		{
 			this->arr[i] = src.arr[i];
 		}
-	}
+	};
+
 	Array& operator=(const Array& src)
 	{
 		if(this == &src)
@@ -48,7 +49,6 @@ public:
 	}
 
 	~Array() {delete [] this->arr;};
-
 
 	T& operator[](int i)
 	{

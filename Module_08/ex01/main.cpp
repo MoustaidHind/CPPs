@@ -29,7 +29,7 @@ int main()
 			for (int i = 0; i < 10000; i++) {
 				numbers.push_back(i);
 			}
-			sp.addnumbers(numbers.begin(), numbers.end());
+			sp.addnumbers<std::vector<int> >(numbers.begin(), numbers.end());
 
 			std::cout << "Shortest Span: " << sp.shortestSpan() << std::endl;
 			std::cout << "Longest Span: " << sp.longestSpan() << std::endl;
@@ -41,12 +41,3 @@ int main()
 	}
 	return 0;
 }
-
-/* 
-
-$> ./ex01
-2
-14
-$>
-
-*/

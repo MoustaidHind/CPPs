@@ -6,6 +6,7 @@
 #include <vector>
 #include <algorithm>
 
+
 class Span
 {
 private:
@@ -15,7 +16,7 @@ private:
 public:
 	Span();
 	Span(unsigned int n) ;
-	Span(const Span& src); // deep copy to dont point to the same address 
+	Span(const Span& src);
 	Span& operator=(const Span& src);
 	~Span();
 
@@ -23,9 +24,18 @@ public:
 	void addNumber(int num);
 	unsigned int shortestSpan();
 	unsigned int longestSpan();
-	void addnumbers(std::vector<int>::iterator beginn, std::vector<int>::iterator endd);
-};
+	
+	template <typename iter>
+	void addnumbers(iter beginn, iter endd)
+	{
+		unsigned int distance = std::distance(beginn, endd);
 
+		if(this->vec.size() + distance > this->N)
+			throw std::out_of_range("RANGE ERROR : cannot add more elements !!!! ");
+
+		this->vec.insert(this->vec.end(), beginn, endd);
+	};
+};
 
 
 

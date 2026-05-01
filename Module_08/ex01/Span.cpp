@@ -19,7 +19,6 @@ Span& Span::operator=(const Span& src)
 
 Span::~Span() { this->vec.clear(); }
 
-
 void Span::addNumber(int num)
 {
 	if (this->vec.size() >= N)
@@ -36,7 +35,7 @@ unsigned int Span::shortestSpan()
 	unsigned int min;
 	std::vector<int> copyVec = this->vec;
 	
-	std::sort(copyVec.begin(), copyVec.end()); // sort copy vector
+	std::sort(copyVec.begin(), copyVec.end());
 	min = copyVec[1] - copyVec[0];
 
 	for(std::vector<int>::iterator it = copyVec.begin(); it != copyVec.end() - 1; it++)
@@ -53,21 +52,12 @@ unsigned int Span::longestSpan()
 	if (this->vec.size() < 2)
 		throw std::length_error("SIZE ERROR : cannot get longest Span !!!! ");
 
-	std::vector<int> copyVec = this->vec; // make a copy
+	std::vector<int> copyVec = this->vec;
 
-	std::sort(copyVec.begin(), copyVec.end()); // sort copy vector
+	std::sort(copyVec.begin(), copyVec.end());
 
-	return(*(copyVec.end() - 1) - *copyVec.begin()); // .begin() it returns an iterator (must be derefenced)
+	return(*(copyVec.end() - 1) - *copyVec.begin());
 };
 
 
-void Span::addnumbers(std::vector<int>::iterator start, std::vector<int>::iterator endd)
-{
-	unsigned int distance = std::distance(start, endd);
-
-	if(this->vec.size() + distance > this->N)
-		throw std::out_of_range("RANGE ERROR : cannot add more elements !!!! ");
-
-	this->vec.insert(this->vec.end(), start, endd);
-};
 

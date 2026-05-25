@@ -39,7 +39,7 @@ void BitcoinExchange::loadDataBase() // DATA : (key = 2009-01-02 , value = 0)
 
 void BitcoinExchange::printData()
 {
-	std::map<std::string, float>::iterator it;
+	std::map<std::string, double>::iterator it;
 	for (it = data.begin(); it != data.end(); it++)
 		std::cout << it->first << "  =>  " << it->second << std::endl;	
 }
@@ -64,35 +64,30 @@ std::string trim(const std::string& str)
 
 }
 
-bool isValidDate(const std::string &Date)
+bool isValidDate(std::string &Date)
 {
 	// yyyy-mm-dd
 	int year, month, day;
 	
-	std::string trimedDate = trim(Date);
+	Date = trim(Date);
 
-	// std::cout << "-" << trimedDate << "-" << std::endl;
+	// std::cout << "-" << Date << "-" << std::endl;
 
-	size_t posY = trimedDate.find('-');
-	if(posY == std::string::npos) return false;
+	if(Date.size() != 10) return false;
 
-	size_t posM = trimedDate.find('-', posY + 1);
-	if(posM == std::string::npos) return false;
+	size_t posY = Date.find('-');
+	if(posY != 4) return false;
+
+	size_t posM = Date.find('-', posY + 1);
+	if(posM != 7) return false;
 	
-	// size_t posD = trimedDate.find(' ', posM + 1);
-	// if(posD == std::string::npos) return false;
 
-	year = std::atoi(trimedDate.substr(0, posY).c_str()); // 0 -> 4 substr(start_from, len);
-	month = std::atoi(trimedDate.substr(posY + 1, posM - posY - 1).c_str()); // 5 -> 7 - 4 - 1 = 2
-	day = std::atoi(trimedDate.substr(posM + 1/* , posD - posM - 1 */).c_str());
+	year = std::atoi(Date.substr(0, posY).c_str()); // 0 -> 4 substr(start_from, len);
+	month = std::atoi(Date.substr(posY + 1, posM - posY - 1).c_str()); // 5 -> 7 - 4 - 1 = 2
+	day = std::atoi(Date.substr(posM + 1/* , posD - posM - 1 */).c_str());
 
-	// std::cout << "----------------------------" << std::endl;
-	
-	// std::cout << Date << std::endl;
-	// std::cout << "YEAR : " << year << " | month : " << month << " | day : " << day << std::endl;
 
-	// std::cout << "----------------------------" << std::endl;
-
+	// check leap year && the months with 31 days 
 	if(year < 2009 || year > 2026 || month < 1 || month > 12 || day < 1 || day > 31 || (month == 2 && (day < 1 || day > 29)))
 		return false;
 
@@ -100,7 +95,7 @@ bool isValidDate(const std::string &Date)
 }
 
 
-void BitcoinExchange::calcBitoin(char *file) 
+void BitcoinExchange::calcBitcoin(char *file) 
 {
 	std::ifstream infile;
 	std::string line;
@@ -125,7 +120,7 @@ void BitcoinExchange::calcBitoin(char *file)
 		}
 
 		// verify positive numbers
-		float value = std::atof(line.substr(pos + 1).c_str());
+		double value = std::atof(line.substr(pos + 1).c_str());
 		if(value < 0)
 		{
 			std::cout << "Error: not a positive number." << std::endl;
@@ -145,8 +140,15 @@ void BitcoinExchange::calcBitoin(char *file)
 			continue;
 		}
 	
-		// std::cout << "m heree222." << std::endl;
+		// clculates bitcoins
+		// Fach k-tdir l-output, affishi it->first (l-date d l-DB) bach n-choufo chnu khda
+		std::map<std::string, double>::iterator it = data.lower_bound(Date);
+		std::cout << "DEBUG: input_date=[" << Date << "] | found_db_date=[" << it->first << "] | rate=" << it->second << std::endl;
 		
+		std::cout << Date << " => " << value << " = " << (value * it->second) << std::endl;
+		// std::lower_bound(data.begin(), data.end(), Date);
+		// i should use std::lower or map.lower ?
+
 	}
 	
 }
@@ -159,3 +161,17 @@ void BitcoinExchange::calcBitoin(char *file)
 	// 3. Verifyi l-Valida d l-Data (The Rules) :ok
 	// 4. L-Qalib d l-Calculation (Searching the Map) (data.lower_bound(inputDate);
 	// 5. L-Output l-Niha'i) =>  (2011-01-03 => 3 = 0.9).
+
+
+	// std::cout << "----------------------------" << std::endl;
+	
+	// std::cout << Date << std::endl;
+	// std::cout << "YEAR : " << year << " | month : " << month << " | day : " << day << std::endl;
+
+	// std::cout << "----------------------------" << std::endl;
+
+
+// Step 2: L-Calculation f calcBitoin (Searching the Map)
+
+
+// lower_bound : what if take unsorted map

@@ -18,7 +18,7 @@ int main(int ac, char **av)
 	btc.loadDataBase();
 	// btc.printData();
 
-	btc.calcBitoin(av[1]);
+	btc.calcBitcoin(av[1]);
 	// GEMINI CHAT 
 	// 1. Hèl l-Input File (av[1])
 	// 2. Parse kul Line b l-Format (date | value) 
@@ -46,4 +46,11 @@ Error: not a positive number.
 Error: bad input => 2001-42-42
 2012-01-11 => 1 = 7.1
 Error: too large a number.
+*/
+
+/* 
+
+still one problem 0.32 instead of 0.32
+handle some cases
+
 */

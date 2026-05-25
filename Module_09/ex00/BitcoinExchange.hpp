@@ -7,6 +7,7 @@
 #include <sstream> 
 #include <string> 
 #include <cstdlib> // atof
+#include <algorithm>
 
 #include <iostream>
 
@@ -14,7 +15,7 @@
 class BitcoinExchange
 {
 private:
-	std::map<std::string, float> data;
+	std::map<std::string, double> data; // double its more Precision
 	
 public:
 	BitcoinExchange();
@@ -26,7 +27,7 @@ public:
 
 	void loadDataBase();
 	void printData();
-	void calcBitoin(char *file);
+	void calcBitcoin(char *file);
 
 };
 

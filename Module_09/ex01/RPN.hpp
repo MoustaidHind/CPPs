@@ -4,7 +4,7 @@
 
 #include <iostream>
 #include <stack>
-
+#include <cstdlib>
 
 class RPN
 {

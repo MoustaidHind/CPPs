@@ -2,7 +2,7 @@ CC = c++
 
 CCFLAGS = -Wall -Werror -Wextra -std=c++98 
 
-NAME = RPN
+NAME = PmergeMe
 
 SRC := $(wildcard *.cpp)
 

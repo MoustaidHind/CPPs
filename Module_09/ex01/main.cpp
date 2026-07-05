@@ -11,7 +11,5 @@ int main(int ac, char **av)
 
 	RPN opera1;
 	opera1.calculation(av[1]);
-
-
-
+	
 }

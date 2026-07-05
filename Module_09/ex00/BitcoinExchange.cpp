@@ -27,8 +27,8 @@ void BitcoinExchange::loadDataBase() // DATA : (key = 2009-01-02 , value = 0)
 		exit(1);
 	}
 
-	std::getline(infile, line); // get the first line (to skip it)
-	while (std::getline(infile, line)) // read line by line without (\n) 
+	std::getline(infile, line);
+	while (std::getline(infile, line))
 	{
 		size_t pos = line.find(',');
 		if(pos != std::string::npos)
@@ -106,6 +106,7 @@ void BitcoinExchange::calcBitcoin(char *file)
 {
 	std::ifstream infile;
 	std::string line;
+	bool firstLine = true;
 
 	infile.open(file);
 	if(infile.fail())
@@ -114,9 +115,15 @@ void BitcoinExchange::calcBitcoin(char *file)
 		return;
 	}
 
-	std::getline(infile, line); // skip head
 	while (std::getline(infile, line))
 	{
+		if (firstLine) {
+            firstLine = false;
+            if (line == "date | value") {
+                continue;
+            }
+        }
+
 		size_t pos = line.find('|');
 
 		// verify pip
@@ -160,7 +167,7 @@ void BitcoinExchange::calcBitcoin(char *file)
 	
 		if (it == data.begin() && it->first != Date) // Date qdim bzzaf
 		{
-			std::cout << "Error: bad input => " << Date << std::endl;
+			std::cout << "Error: Old Date => " << Date << std::endl;
 			continue;
 		}
 

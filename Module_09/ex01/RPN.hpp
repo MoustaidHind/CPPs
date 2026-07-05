@@ -12,8 +12,9 @@ private:
 	std::stack<int> stck;
 
 public:
-	//ocf
 	RPN();
+	RPN(const RPN& copy);
+	RPN& operator=(const RPN& assign);
 	~RPN();
 
 

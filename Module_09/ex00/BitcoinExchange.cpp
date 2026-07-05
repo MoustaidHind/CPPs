@@ -1,10 +1,16 @@
 #include "BitcoinExchange.hpp"
 
-// OCF
-
-BitcoinExchange::BitcoinExchange(){}
-BitcoinExchange::~BitcoinExchange(){}
-// Copy Constructor u l-Assignment
+BitcoinExchange::BitcoinExchange() {}
+BitcoinExchange::BitcoinExchange(const BitcoinExchange& copy) {
+    *this = copy;
+}
+BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange& assign) {
+    if (this != &assign) {
+        this->data = assign.data;
+    }
+    return *this;
+}
+BitcoinExchange::~BitcoinExchange() {}
 
 
 // Parsing Database
@@ -17,8 +23,8 @@ void BitcoinExchange::loadDataBase() // DATA : (key = 2009-01-02 , value = 0)
 	infile.open("data.csv"); // should we parse that ?
 	if(infile.fail()) 
 	{
-		std::cerr << "error opening fail !!" << std::endl;
-		return;
+		std::cerr << "Error: could not open database file." << std::endl;
+		exit(1);
 	}
 
 	std::getline(infile, line); // get the first line (to skip it)
@@ -53,15 +59,6 @@ std::string trim(const std::string& str)
 		return "";
 
     return str.substr(first, (last - first + 1));
-
-
-	// should trim date first (remove spaces before the pipe line) 
-	// std::string trimDate = Date;
-	// size_t lastSpace = trimDate.find_last_not_of(" \t\n\r");
-	// if (lastSpace != std::string::npos)
-	// 	trimDate = trimDate.substr(0, lastSpace + 1);
-
-
 }
 
 bool isValidDate(std::string &Date)
@@ -88,8 +85,18 @@ bool isValidDate(std::string &Date)
 
 
 	// check leap year && the months with 31 days 
-	if(year < 2009 || year > 2026 || month < 1 || month > 12 || day < 1 || day > 31 || (month == 2 && (day < 1 || day > 29)))
+	if(year < 2009 || year > 2026 || month < 1 || month > 12 || day < 1 || day > 31)
 		return false;
+
+	if ((month == 4 || month == 6 || month == 9 || month == 11) && day > 30)
+		return false;
+
+	// 3. February - Leap Year 
+	if (month == 2) {
+		bool isLeap = ((year % 4 == 0) && (year % 100 != 0 || year % 400 == 0));
+		if (isLeap && day > 29) return false;
+		if (!isLeap && day > 28) return false;
+	}
 
 	return true;
 }
@@ -100,10 +107,10 @@ void BitcoinExchange::calcBitcoin(char *file)
 	std::ifstream infile;
 	std::string line;
 
-	infile.open(file); // how infile work, it store : 2011-01-03 | 2
+	infile.open(file);
 	if(infile.fail())
 	{
-		std::cerr << "error opening fail !!" << std::endl;
+		std::cerr << "Error: could not open database file." << std::endl;
 		return;
 	}
 
@@ -119,8 +126,15 @@ void BitcoinExchange::calcBitcoin(char *file)
 			continue;
 		}
 
-		// verify positive numbers
-		double value = std::atof(line.substr(pos + 1).c_str());
+		// N-nqqiw l-value mn l-khwa (spaces) u n-checkiw wach khawya
+		std::string valueStr = trim(line.substr(pos + 1));
+		if (valueStr.empty())
+		{
+			std::cout << "Error: bad input => " << line << std::endl;
+			continue;
+		}
+
+		double value = std::atof(valueStr.c_str());
 		if(value < 0)
 		{
 			std::cout << "Error: not a positive number." << std::endl;
@@ -143,35 +157,19 @@ void BitcoinExchange::calcBitcoin(char *file)
 		// clculates bitcoins
 		// Fach k-tdir l-output, affishi it->first (l-date d l-DB) bach n-choufo chnu khda
 		std::map<std::string, double>::iterator it = data.lower_bound(Date);
-		std::cout << "DEBUG: input_date=[" << Date << "] | found_db_date=[" << it->first << "] | rate=" << it->second << std::endl;
-		
-		std::cout << Date << " => " << value << " = " << (value * it->second) << std::endl;
-		// std::lower_bound(data.begin(), data.end(), Date);
-		// i should use std::lower or map.lower ?
+	
+		if (it == data.begin() && it->first != Date) // Date qdim bzzaf
+		{
+			std::cout << "Error: bad input => " << Date << std::endl;
+			continue;
+		}
 
+		// 2. Ila ma-lqash l-Date d-d-dabt, awla wssel l-end(), khassna n-rj3ou l-lour b star
+		if (it == data.end() || it->first != Date) {
+			--it; 
+		}
+
+		std::cout << Date << " => " << value << " = " << (value * it->second) << std::endl;
 	}
 	
 }
-
-// std::cout << "LINE ---->> " << line << "///  VALUEE  ===> " << value << std::endl;
-
-// GEMINI CHAT 
-	// 1. Hèl l-Input File (av[1]) :ok
-	// 2. Parse kul Line b l-Format (date | value)  :ok
-	// 3. Verifyi l-Valida d l-Data (The Rules) :ok
-	// 4. L-Qalib d l-Calculation (Searching the Map) (data.lower_bound(inputDate);
-	// 5. L-Output l-Niha'i) =>  (2011-01-03 => 3 = 0.9).
-
-
-	// std::cout << "----------------------------" << std::endl;
-	
-	// std::cout << Date << std::endl;
-	// std::cout << "YEAR : " << year << " | month : " << month << " | day : " << day << std::endl;
-
-	// std::cout << "----------------------------" << std::endl;
-
-
-// Step 2: L-Calculation f calcBitoin (Searching the Map)
-
-
-// lower_bound : what if take unsorted map

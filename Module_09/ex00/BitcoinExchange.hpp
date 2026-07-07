@@ -1,16 +1,13 @@
 #ifndef BITCOINEXCHANGE
 #define BITCOINEXCHANGE
 
-
 #include <map>
 #include <fstream>
 #include <sstream> 
 #include <string> 
-#include <cstdlib> // atof
+#include <cstdlib>
 #include <algorithm>
-
 #include <iostream>
-
 
 class BitcoinExchange
 {
@@ -23,15 +20,10 @@ public:
 	BitcoinExchange& operator=(const BitcoinExchange& src);
 	~BitcoinExchange();
 
-
-
 	void loadDataBase();
 	void printData();
 	void calcBitcoin(char *file);
 
 };
-
-
-
 
 #endif

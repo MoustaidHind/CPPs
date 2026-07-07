@@ -14,13 +14,13 @@ BitcoinExchange::~BitcoinExchange() {}
 
 
 // Parsing Database
-void BitcoinExchange::loadDataBase() // DATA : (key = 2009-01-02 , value = 0)
+void BitcoinExchange::loadDataBase()
 {
 	std::ifstream infile;
 	std::string line;
 	std::string key, value;
 
-	infile.open("data.csv"); // should we parse that ?
+	infile.open("data.csv");
 	if(infile.fail()) 
 	{
 		std::cerr << "Error: could not open database file." << std::endl;
@@ -42,7 +42,6 @@ void BitcoinExchange::loadDataBase() // DATA : (key = 2009-01-02 , value = 0)
 	infile.close();
 }
 
-
 void BitcoinExchange::printData()
 {
 	std::map<std::string, double>::iterator it;
@@ -63,13 +62,9 @@ std::string trim(const std::string& str)
 
 bool isValidDate(std::string &Date)
 {
-	// yyyy-mm-dd
 	int year, month, day;
 	
 	Date = trim(Date);
-
-	// std::cout << "-" << Date << "-" << std::endl;
-
 	if(Date.size() != 10) return false;
 
 	size_t posY = Date.find('-');
@@ -78,13 +73,10 @@ bool isValidDate(std::string &Date)
 	size_t posM = Date.find('-', posY + 1);
 	if(posM != 7) return false;
 	
+	year = std::atoi(Date.substr(0, posY).c_str());
+	month = std::atoi(Date.substr(posY + 1, posM - posY - 1).c_str());
+	day = std::atoi(Date.substr(posM + 1).c_str());
 
-	year = std::atoi(Date.substr(0, posY).c_str()); // 0 -> 4 substr(start_from, len);
-	month = std::atoi(Date.substr(posY + 1, posM - posY - 1).c_str()); // 5 -> 7 - 4 - 1 = 2
-	day = std::atoi(Date.substr(posM + 1/* , posD - posM - 1 */).c_str());
-
-
-	// check leap year && the months with 31 days 
 	if(year < 2009 || year > 2026 || month < 1 || month > 12 || day < 1 || day > 31)
 		return false;
 
@@ -92,7 +84,8 @@ bool isValidDate(std::string &Date)
 		return false;
 
 	// 3. February - Leap Year 
-	if (month == 2) {
+	if (month == 2)
+	{
 		bool isLeap = ((year % 4 == 0) && (year % 100 != 0 || year % 400 == 0));
 		if (isLeap && day > 29) return false;
 		if (!isLeap && day > 28) return false;
@@ -100,7 +93,6 @@ bool isValidDate(std::string &Date)
 
 	return true;
 }
-
 
 void BitcoinExchange::calcBitcoin(char *file) 
 {
@@ -117,23 +109,20 @@ void BitcoinExchange::calcBitcoin(char *file)
 
 	while (std::getline(infile, line))
 	{
-		if (firstLine) {
+		if (firstLine)
+		{
             firstLine = false;
-            if (line == "date | value") {
+            if (line == "date | value")
                 continue;
-            }
         }
 
 		size_t pos = line.find('|');
-
-		// verify pip
 		if(pos == std::string::npos)
 		{
 			std::cout << "Error: bad input => " << line << std::endl;
 			continue;
 		}
 
-		// N-nqqiw l-value mn l-khwa (spaces) u n-checkiw wach khawya
 		std::string valueStr = trim(line.substr(pos + 1));
 		if (valueStr.empty())
 		{
@@ -162,21 +151,15 @@ void BitcoinExchange::calcBitcoin(char *file)
 		}
 	
 		// clculates bitcoins
-		// Fach k-tdir l-output, affishi it->first (l-date d l-DB) bach n-choufo chnu khda
-		std::map<std::string, double>::iterator it = data.lower_bound(Date);
-	
-		if (it == data.begin() && it->first != Date) // Date qdim bzzaf
+		std::map<std::string, double>::iterator it = data.lower_bound(Date);	
+		if (it == data.begin() && it->first != Date)
 		{
 			std::cout << "Error: Old Date => " << Date << std::endl;
 			continue;
 		}
-
-		// 2. Ila ma-lqash l-Date d-d-dabt, awla wssel l-end(), khassna n-rj3ou l-lour b star
 		if (it == data.end() || it->first != Date) {
 			--it; 
 		}
-
 		std::cout << Date << " => " << value << " = " << (value * it->second) << std::endl;
-	}
-	
+	}	
 }

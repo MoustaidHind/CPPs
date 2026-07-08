@@ -2,13 +2,13 @@
 
 BitcoinExchange::BitcoinExchange() {}
 BitcoinExchange::BitcoinExchange(const BitcoinExchange& copy) {
-    *this = copy;
+	*this = copy;
 }
 BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange& assign) {
-    if (this != &assign) {
-        this->data = assign.data;
-    }
-    return *this;
+	if (this != &assign) {
+		this->data = assign.data;
+	}
+	return *this;
 }
 BitcoinExchange::~BitcoinExchange() {}
 
@@ -51,13 +51,13 @@ void BitcoinExchange::printData()
 
 std::string trim(const std::string& str) 
 {
-    size_t first = str.find_first_not_of(" \t");
-    size_t last = str.find_last_not_of(" \t");
+	size_t first = str.find_first_not_of(" \t");
+	size_t last = str.find_last_not_of(" \t");
 
-	if (first == std::string::npos) // why this condition 
+	if (first == std::string::npos) 
 		return "";
 
-    return str.substr(first, (last - first + 1));
+	return str.substr(first, (last - first + 1));
 }
 
 bool isValidDate(std::string &Date)
@@ -65,7 +65,14 @@ bool isValidDate(std::string &Date)
 	int year, month, day;
 	
 	Date = trim(Date);
-	if(Date.size() != 10) return false;
+	if(Date.size() != 10)
+		return false;
+	
+	for (size_t i = 0; i < Date.length(); i++) {
+		if (!std::isdigit(Date[i]) && Date[i] != '-') {
+			return false; 
+		}
+	}
 
 	size_t posY = Date.find('-');
 	if(posY != 4) return false;
@@ -83,7 +90,6 @@ bool isValidDate(std::string &Date)
 	if ((month == 4 || month == 6 || month == 9 || month == 11) && day > 30)
 		return false;
 
-	// 3. February - Leap Year 
 	if (month == 2)
 	{
 		bool isLeap = ((year % 4 == 0) && (year % 100 != 0 || year % 400 == 0));
@@ -92,6 +98,25 @@ bool isValidDate(std::string &Date)
 	}
 
 	return true;
+}
+
+bool isValidNumberFormat(const std::string& str) {
+	int point = 0;
+	size_t i = 0;
+
+	if (str[i] == '+' || str[i] == '-') 
+		i++;
+
+	if (i == str.length()) 
+		return false; 
+
+	for (; i < str.length(); i++) {
+		if (str[i] == '.')
+			point++;
+		else if (!std::isdigit(str[i]))
+			return false;
+	}
+	return point <= 1;
 }
 
 void BitcoinExchange::calcBitcoin(char *file) 
@@ -111,10 +136,10 @@ void BitcoinExchange::calcBitcoin(char *file)
 	{
 		if (firstLine)
 		{
-            firstLine = false;
-            if (line == "date | value")
-                continue;
-        }
+			firstLine = false;
+			if (line == "date | value")
+				continue;
+		}
 
 		size_t pos = line.find('|');
 		if(pos == std::string::npos)
@@ -126,6 +151,10 @@ void BitcoinExchange::calcBitcoin(char *file)
 		std::string valueStr = trim(line.substr(pos + 1));
 		if (valueStr.empty())
 		{
+			std::cout << "Error: bad input => " << line << std::endl;
+			continue;
+		}
+		if (!isValidNumberFormat(valueStr)) {
 			std::cout << "Error: bad input => " << line << std::endl;
 			continue;
 		}
